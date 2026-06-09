@@ -1,0 +1,15 @@
+langchain==0.3.25
+langchain-community==0.3.23
+langchain-huggingface==0.1.2
+sentence-transformers==3.4.1
+faiss-cpu==1.9.0
+pypdf==5.1.0
+pdfplumber==0.11.4
+gradio==5.31.0
+transformers==4.51.3
+accelerate==1.7.0
+bitsandbytes==0.45.5
+python-dotenv==1.1.0
+fpdf2==2.8.3
+pandas==2.2.3
+tqdm==4.67.1
