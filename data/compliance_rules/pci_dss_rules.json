@@ -1,0 +1,42 @@
+{
+  "framework": "PCI_DSS",
+  "version": "Payment Card Industry Data Security Standard v4.0",
+  "rules": [
+    {
+      "id": "PCI-001",
+      "category": "Cardholder Data",
+      "title": "Protection of stored cardholder data",
+      "description": "Cardholder data must be protected using strong encryption. Primary Account Numbers must never be stored in plaintext.",
+      "keywords": ["cardholder data", "PAN", "encryption", "card number", "stored data"],
+      "severity": "CRITICAL",
+      "required_clause": "Cardholder data storage must use strong encryption and PAN must not be stored in plaintext."
+    },
+    {
+      "id": "PCI-002",
+      "category": "Access Control",
+      "title": "Restrict access to cardholder data by business need",
+      "description": "Access to cardholder data must be restricted to only those individuals whose job requires such access.",
+      "keywords": ["access control", "cardholder", "need to know", "least privilege", "restricted access"],
+      "severity": "HIGH",
+      "required_clause": "Access to cardholder data must follow least-privilege and need-to-know principles."
+    },
+    {
+      "id": "PCI-003",
+      "category": "Network Security",
+      "title": "Firewall and network segmentation",
+      "description": "A firewall must be installed and maintained to protect the cardholder data environment from untrusted networks.",
+      "keywords": ["firewall", "network", "segmentation", "cardholder environment", "untrusted network"],
+      "severity": "HIGH",
+      "required_clause": "Firewall configuration and network segmentation for cardholder data environment must be documented."
+    },
+    {
+      "id": "PCI-004",
+      "category": "Vulnerability Management",
+      "title": "Regular security testing and vulnerability scans",
+      "description": "All systems must be protected against known vulnerabilities through regular patching and security scanning.",
+      "keywords": ["vulnerability", "patching", "security scan", "penetration test", "security testing"],
+      "severity": "HIGH",
+      "required_clause": "Regular vulnerability scanning and penetration testing procedures must be documented."
+    }
+  ]
+}

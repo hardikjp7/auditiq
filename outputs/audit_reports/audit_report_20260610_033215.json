@@ -1,0 +1,103 @@
+{
+  "report_meta": {
+    "document": "uploaded_doc.txt",
+    "generated": "2026-06-10T03:32:15.158782",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "embeddings": "BAAI/bge-small-en-v1.5"
+  },
+  "score_summary": {
+    "overall_score": 0.0,
+    "risk_level": "CRITICAL",
+    "framework_scores": {
+      "GDPR": 0.0,
+      "SOX": 0.0
+    },
+    "status_counts": {
+      "NON_COMPLIANT": 3
+    },
+    "total_rules": 3,
+    "issues": [
+      {
+        "rule_id": "GDPR-002",
+        "framework": "GDPR",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "No clear data retention period or deletion schedule has been defined.",
+        "recommendation": "Establish a clear data retention period based on the original purpose of data collection and implement a deletion schedule."
+      },
+      {
+        "rule_id": "GDPR-005",
+        "framework": "GDPR",
+        "severity": "MEDIUM",
+        "status": "NON_COMPLIANT",
+        "gap": "Data processing agreements with all third parties have not been established.",
+        "recommendation": "Ensure that data processing agreements with all third parties include GDPR-compliant clauses."
+      },
+      {
+        "rule_id": "SOX-003",
+        "framework": "SOX",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "Financial records and audit workpapers are not retained for at least 7 years.",
+        "recommendation": "Implement a 7-year retention policy for all financial records and ensure separate retention of audit workpapers."
+      }
+    ],
+    "critical_issues": [],
+    "high_issues": [
+      {
+        "rule_id": "GDPR-002",
+        "framework": "GDPR",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "No clear data retention period or deletion schedule has been defined.",
+        "recommendation": "Establish a clear data retention period based on the original purpose of data collection and implement a deletion schedule."
+      },
+      {
+        "rule_id": "SOX-003",
+        "framework": "SOX",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "Financial records and audit workpapers are not retained for at least 7 years.",
+        "recommendation": "Implement a 7-year retention policy for all financial records and ensure separate retention of audit workpapers."
+      }
+    ]
+  },
+  "validations": [
+    {
+      "rule_id": "GDPR-002",
+      "framework": "GDPR",
+      "severity": "HIGH",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 85,
+      "evidence": "\"Data is retained indefinitely for internal analytics and marketing purposes\"",
+      "gap": "No clear data retention period or deletion schedule has been defined.",
+      "recommendation": "Establish a clear data retention period based on the original purpose of data collection and implement a deletion schedule.",
+      "chunk_id": "uploaded_doc.txt_chunk_0",
+      "chunk_text_preview": "FINANCIAL SERVICES DATA PROCESSING AGREEMENT Company: FinServ Solutions Ltd. Date: June 2026 1. DATA COLLECTION AND LAWFUL BASIS The Company collects "
+    },
+    {
+      "rule_id": "GDPR-005",
+      "framework": "GDPR",
+      "severity": "MEDIUM",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 90,
+      "evidence": "\"Customer data is shared with 12 external vendors. Data processing agreements have not been established with all vendors\"",
+      "gap": "Data processing agreements with all third parties have not been established.",
+      "recommendation": "Ensure that data processing agreements with all third parties include GDPR-compliant clauses.",
+      "chunk_id": "uploaded_doc.txt_chunk_0",
+      "chunk_text_preview": "FINANCIAL SERVICES DATA PROCESSING AGREEMENT Company: FinServ Solutions Ltd. Date: June 2026 1. DATA COLLECTION AND LAWFUL BASIS The Company collects "
+    },
+    {
+      "rule_id": "SOX-003",
+      "framework": "SOX",
+      "severity": "HIGH",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 80,
+      "evidence": "\"Financial records are retained for 3 years then destroyed. Audit workpapers are not separately retained\"",
+      "gap": "Financial records and audit workpapers are not retained for at least 7 years.",
+      "recommendation": "Implement a 7-year retention policy for all financial records and ensure separate retention of audit workpapers.",
+      "chunk_id": "uploaded_doc.txt_chunk_0",
+      "chunk_text_preview": "FINANCIAL SERVICES DATA PROCESSING AGREEMENT Company: FinServ Solutions Ltd. Date: June 2026 1. DATA COLLECTION AND LAWFUL BASIS The Company collects "
+    }
+  ]
+}

@@ -1,5 +1,3 @@
-# /workspace/shared/audit_validator/src/utils.py
-
 import os
 import json
 import time
@@ -33,14 +31,13 @@ def setup_logger(name: str) -> logging.Logger:
 def save_json(data: dict, filepath: str):
     with open(filepath, "w") as f:
         json.dump(data, f, indent=2)
-    print(f"✅ Saved: {filepath}")
+    print(f"Saved: {filepath}")
 
 def load_json(filepath: str) -> dict:
     with open(filepath, "r") as f:
         return json.load(f)
 
 class Timer:
-    """Simple latency timer — wrap any block to measure time"""
     def __init__(self, label=""):
         self.label = label
     def __enter__(self):
@@ -48,8 +45,22 @@ class Timer:
         return self
     def __exit__(self, *args):
         self.elapsed = round(time.time() - self.start, 3)
-        print(f"⏱ [{self.label}] {self.elapsed}s")
+        print(f"[{self.label}] {self.elapsed}s")
 
 def token_counter(text: str) -> int:
-    """Rough token estimate: words * 1.3"""
     return int(len(text.split()) * 1.3)
+
+def log_gpu_memory(label=""):
+    try:
+        import torch
+        if torch.cuda.is_available():
+            allocated = torch.cuda.memory_allocated() / 1e9
+            reserved  = torch.cuda.memory_reserved() / 1e9
+            total     = torch.cuda.get_device_properties(0).total_memory / 1e9
+            print(f"[GPU Memory] {label}")
+            print(f"  Allocated : {allocated:.2f} GB")
+            print(f"  Reserved  : {reserved:.2f} GB")
+            print(f"  Total     : {total:.2f} GB")
+            print(f"  Free      : {total - reserved:.2f} GB")
+    except Exception as e:
+        print(f"GPU check skipped: {e}")

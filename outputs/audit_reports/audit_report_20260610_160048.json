@@ -1,0 +1,188 @@
+{
+  "report_meta": {
+    "document": "auditiq_upload.pdf",
+    "generated": "2026-06-10T16:00:48.839675",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "embeddings": "BAAI/bge-small-en-v1.5",
+    "frameworks": [
+      "GDPR",
+      "SOX",
+      "HIPAA",
+      "PCI_DSS",
+      "Insurance_Compliance"
+    ]
+  },
+  "score_summary": {
+    "overall_score": 11.5,
+    "risk_level": "CRITICAL",
+    "framework_scores": {
+      "GDPR": 7.1,
+      "HIPAA": 0.0,
+      "Insurance_Compliance": 100.0
+    },
+    "status_counts": {
+      "NON_COMPLIANT": 4,
+      "PARTIAL": 1,
+      "COMPLIANT": 1
+    },
+    "total_rules": 6,
+    "issues": [
+      {
+        "rule_id": "GDPR-002",
+        "framework": "GDPR",
+        "severity": "CRITICAL",
+        "status": "NON_COMPLIANT",
+        "gap": "Clear data retention period or deletion schedule is missing.",
+        "recommendation": "Define a specific retention period for different types of data and establish a formal process for data deletion."
+      },
+      {
+        "rule_id": "GDPR-004",
+        "framework": "GDPR",
+        "severity": "CRITICAL",
+        "status": "NON_COMPLIANT",
+        "gap": "A formal breach notification procedure with a 72-hour reporting timeline is missing.",
+        "recommendation": "Develop and document a formal breach notification procedure that includes a 72-hour reporting timeline to the supervisory authority."
+      },
+      {
+        "rule_id": "GDPR-005",
+        "framework": "GDPR",
+        "severity": "MEDIUM",
+        "status": "PARTIAL",
+        "gap": "Data processing agreements with third-party data processors are not referenced.",
+        "recommendation": "Ensure that data processing agreements with all third parties are documented and include GDPR-compliant clauses."
+      },
+      {
+        "rule_id": "HIPAA-005",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "Business Associate Agreements with 3 out of 8 vendors are missing.",
+        "recommendation": "Execute Business Associate Agreements with the remaining 3 vendors."
+      },
+      {
+        "rule_id": "HIPAA-003",
+        "framework": "HIPAA",
+        "severity": "CRITICAL",
+        "status": "NON_COMPLIANT",
+        "gap": "A 60-day breach notification procedure for PHI is missing.",
+        "recommendation": "Document a 60-day breach notification procedure for PHI."
+      }
+    ],
+    "critical_issues": [
+      {
+        "rule_id": "GDPR-002",
+        "framework": "GDPR",
+        "severity": "CRITICAL",
+        "status": "NON_COMPLIANT",
+        "gap": "Clear data retention period or deletion schedule is missing.",
+        "recommendation": "Define a specific retention period for different types of data and establish a formal process for data deletion."
+      },
+      {
+        "rule_id": "GDPR-004",
+        "framework": "GDPR",
+        "severity": "CRITICAL",
+        "status": "NON_COMPLIANT",
+        "gap": "A formal breach notification procedure with a 72-hour reporting timeline is missing.",
+        "recommendation": "Develop and document a formal breach notification procedure that includes a 72-hour reporting timeline to the supervisory authority."
+      },
+      {
+        "rule_id": "HIPAA-003",
+        "framework": "HIPAA",
+        "severity": "CRITICAL",
+        "status": "NON_COMPLIANT",
+        "gap": "A 60-day breach notification procedure for PHI is missing.",
+        "recommendation": "Document a 60-day breach notification procedure for PHI."
+      }
+    ],
+    "high_issues": [
+      {
+        "rule_id": "HIPAA-005",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "Business Associate Agreements with 3 out of 8 vendors are missing.",
+        "recommendation": "Execute Business Associate Agreements with the remaining 3 vendors."
+      }
+    ]
+  },
+  "validations": [
+    {
+      "rule_id": "GDPR-002",
+      "framework": "GDPR",
+      "severity": "CRITICAL",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 85,
+      "reasoning": "The document does not specify a clear data retention period or deletion schedule.",
+      "evidence": "Customer personal data is retained indefinitely for internal analytics and business intelligence purposes.",
+      "gap": "Clear data retention period or deletion schedule is missing.",
+      "recommendation": "Define a specific retention period for different types of data and establish a formal process for data deletion.",
+      "chunk_id": "auditiq_upload.pdf_chunk_0",
+      "chunk_text_preview": "CONFIDENTIAL - FinServ Corp. Internal Document Enterprise Data Processing & Financial Services Agreement FinServ Corp Ltd. | Contract Ref: FSC-2026-00"
+    },
+    {
+      "rule_id": "GDPR-004",
+      "framework": "GDPR",
+      "severity": "CRITICAL",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 90,
+      "reasoning": "The document does not reference a breach notification procedure with a 72-hour reporting timeline.",
+      "evidence": "In the event of a personal data breach, the Company will notify the relevant supervisory authority within 72 hours of becoming aware of the breach, in accordance with GDPR Article 33.",
+      "gap": "A formal breach notification procedure with a 72-hour reporting timeline is missing.",
+      "recommendation": "Develop and document a formal breach notification procedure that includes a 72-hour reporting timeline to the supervisory authority.",
+      "chunk_id": "auditiq_upload.pdf_chunk_0",
+      "chunk_text_preview": "CONFIDENTIAL - FinServ Corp. Internal Document Enterprise Data Processing & Financial Services Agreement FinServ Corp Ltd. | Contract Ref: FSC-2026-00"
+    },
+    {
+      "rule_id": "GDPR-005",
+      "framework": "GDPR",
+      "severity": "MEDIUM",
+      "status": "PARTIAL",
+      "confidence_score": 70,
+      "reasoning": "The document mentions sharing data with third-party advertising partners but does not reference data processing agreements with them.",
+      "evidence": "Personal data including transaction history and contact details is shared with third-party advertising partners for targeted marketing without explicit customer consent.",
+      "gap": "Data processing agreements with third-party data processors are not referenced.",
+      "recommendation": "Ensure that data processing agreements with all third parties are documented and include GDPR-compliant clauses.",
+      "chunk_id": "auditiq_upload.pdf_chunk_0",
+      "chunk_text_preview": "CONFIDENTIAL - FinServ Corp. Internal Document Enterprise Data Processing & Financial Services Agreement FinServ Corp Ltd. | Contract Ref: FSC-2026-00"
+    },
+    {
+      "rule_id": "HIPAA-005",
+      "framework": "HIPAA",
+      "severity": "HIGH",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 70,
+      "reasoning": "Not all Business Associate Agreements are in place.",
+      "evidence": "Business Associate Agreements have not yet been executed with our 3 benefits administration vendors.",
+      "gap": "Business Associate Agreements with 3 out of 8 vendors are missing.",
+      "recommendation": "Execute Business Associate Agreements with the remaining 3 vendors.",
+      "chunk_id": "auditiq_upload.pdf_chunk_1",
+      "chunk_text_preview": "Insurance claims are acknowledged in writing within 10 business days of receipt. Target resolution is set at 45 business days, which exceeds the 30-da"
+    },
+    {
+      "rule_id": "HIPAA-003",
+      "framework": "HIPAA",
+      "severity": "CRITICAL",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 60,
+      "reasoning": "No documented 60-day breach notification procedure exists.",
+      "evidence": "Audit logging for PHI system access has not been implemented.",
+      "gap": "A 60-day breach notification procedure for PHI is missing.",
+      "recommendation": "Document a 60-day breach notification procedure for PHI.",
+      "chunk_id": "auditiq_upload.pdf_chunk_1",
+      "chunk_text_preview": "Insurance claims are acknowledged in writing within 10 business days of receipt. Target resolution is set at 45 business days, which exceeds the 30-da"
+    },
+    {
+      "rule_id": "INS-002",
+      "framework": "Insurance_Compliance",
+      "severity": "MEDIUM",
+      "status": "COMPLIANT",
+      "confidence_score": 95,
+      "reasoning": "The document specifies the required claims processing timelines.",
+      "evidence": "Insurance claims are acknowledged in writing within 10 business days of receipt. Target resolution is set at 45 business days, which exceeds the 30-day regulatory requirement.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_1",
+      "chunk_text_preview": "Insurance claims are acknowledged in writing within 10 business days of receipt. Target resolution is set at 45 business days, which exceeds the 30-da"
+    }
+  ]
+}

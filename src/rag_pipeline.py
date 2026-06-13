@@ -1,3 +1,5 @@
+# src/rag_pipeline.py
+
 import faiss
 import numpy as np
 import pickle
@@ -7,6 +9,7 @@ from src.rule_loader import load_all_rules, load_rules_as_text
 from src.utils import Timer
 
 VS_DIR = Path("/workspace/shared/audit_validator/data/vector_store")
+SIMILARITY_THRESHOLD = 0.60
 
 def build_faiss_index(rule_texts: list) -> tuple:
     texts = [r["text"] for r in rule_texts]
@@ -27,21 +30,26 @@ def save_index(index, rule_texts: list):
     print(f"Index saved to: {VS_DIR}")
 
 def load_index():
-    index      = faiss.read_index(str(VS_DIR / "rules.index"))
+    index = faiss.read_index(str(VS_DIR / "rules.index"))
     with open(VS_DIR / "rule_texts.pkl", "rb") as f:
         rule_texts = pickle.load(f)
     print(f"Index loaded: {index.ntotal} vectors")
     return index, rule_texts
 
 def retrieve_top_rules(query: str, index, rule_texts: list, top_k: int = 3) -> list:
-    query_vec        = embed_query(query).reshape(1, -1).astype(np.float32)
-    scores, indices  = index.search(query_vec, top_k)
+    query_vec       = embed_query(query).reshape(1, -1).astype(np.float32)
+    scores, indices = index.search(query_vec, top_k)
     results = []
     for score, idx in zip(scores[0], indices[0]):
-        if idx != -1:
-            r = rule_texts[idx].copy()
-            r["similarity_score"] = round(float(score), 4)
-            results.append(r)
+        if idx == -1:
+            continue
+        if float(score) < SIMILARITY_THRESHOLD:
+            continue
+        r = rule_texts[idx].copy()
+        r["similarity_score"] = round(float(score), 4)
+        results.append(r)
+    if not results:
+        print(f"  [Retrieval] No rules above threshold {SIMILARITY_THRESHOLD} for this chunk")
     return results
 
 def index_exists() -> bool:

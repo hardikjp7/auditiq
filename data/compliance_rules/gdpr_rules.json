@@ -1,0 +1,76 @@
+{
+  "framework": "GDPR",
+  "version": "2018",
+  "rules": [
+    {
+      "id": "GDPR-001",
+      "category": "Data Collection",
+      "title": "Lawful basis for processing",
+      "description": "Personal data must be processed on a lawful basis such as consent, contract, legal obligation, vital interests, public task, or legitimate interests.",
+      "keywords": [
+        "consent",
+        "lawful basis",
+        "processing",
+        "personal data"
+      ],
+      "severity": "HIGH",
+      "required_clause": "The document must state the legal basis under which personal data is collected and processed."
+    },
+    {
+      "id": "GDPR-002",
+      "category": "Data Retention",
+      "title": "Retention period",
+      "description": "Personal data must not be kept longer than necessary for its original purpose.",
+      "keywords": [
+        "retention",
+        "storage period",
+        "deletion",
+        "data kept"
+      ],
+      "severity": "HIGH",
+      "required_clause": "A clear data retention period or deletion schedule must be defined."
+    },
+    {
+      "id": "GDPR-003",
+      "category": "Data Subject Rights",
+      "title": "Right to access and erasure",
+      "description": "Data subjects have the right to access their personal data and request erasure.",
+      "keywords": [
+        "right to access",
+        "erasure",
+        "right to be forgotten",
+        "subject request"
+      ],
+      "severity": "HIGH",
+      "required_clause": "Procedures for handling data subject access and erasure requests must be documented."
+    },
+    {
+      "id": "GDPR-004",
+      "category": "Data Breach",
+      "title": "Breach notification",
+      "description": "Data breaches must be reported to supervisory authority within 72 hours.",
+      "keywords": [
+        "breach",
+        "notification",
+        "72 hours",
+        "incident"
+      ],
+      "severity": "CRITICAL",
+      "required_clause": "A breach notification procedure with 72-hour reporting timeline must be included."
+    },
+    {
+      "id": "GDPR-005",
+      "category": "Third Party",
+      "title": "Data processor agreements",
+      "description": "Contracts with third-party data processors must include GDPR-compliant clauses.",
+      "keywords": [
+        "processor",
+        "third party",
+        "data sharing",
+        "sub-processor"
+      ],
+      "severity": "MEDIUM",
+      "required_clause": "Data processing agreements with all third parties must be referenced."
+    }
+  ]
+}

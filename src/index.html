@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>auditiq — AI Compliance Validator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+/* ── Reset & Base ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:       #0f1f3d;
+  --navy-mid:   #1a3260;
+  --navy-light: #243d73;
+  --amber:      #f59e0b;
+  --amber-dim:  #fbbf24;
+  --amber-bg:   #fffbeb;
+  --green:      #16a34a;
+  --green-bg:   #dcfce7;
+  --red:        #dc2626;
+  --red-bg:     #fee2e2;
+  --orange:     #ea580c;
+  --orange-bg:  #ffedd5;
+  --grey:       #6b7280;
+  --grey-bg:    #f3f4f6;
+  --border:     #e5e7eb;
+  --white:      #ffffff;
+  --text:       #111827;
+  --text-soft:  #6b7280;
+  --font-ui:    'Inter', sans-serif;
+  --font-mono:  'JetBrains Mono', monospace;
+  --radius:     12px;
+  --radius-sm:  8px;
+  --shadow:     0 4px 24px rgba(15,31,61,0.10);
+  --shadow-lg:  0 8px 40px rgba(15,31,61,0.16);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-ui);
+  background: #f0f4f8;
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── Navbar ───────────────────────────────────────────── */
+.navbar {
+  background: var(--navy);
+  padding: 0 40px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.navbar-logo {
+  width: 32px; height: 32px;
+  background: var(--amber);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.navbar-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.5px;
+}
+.navbar-title span { color: var(--amber); }
+.navbar-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.navbar-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--amber);
+  border: 1px solid var(--amber);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+.navbar-badge.grey {
+  color: rgba(255,255,255,0.5);
+  border-color: rgba(255,255,255,0.2);
+}
+
+/* ── Main layout ──────────────────────────────────────── */
+.main { max-width: 1280px; margin: 0 auto; padding: 32px 32px 80px; }
+
+/* ── Hero / Upload Section ────────────────────────────── */
+.hero {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 40px;
+  box-shadow: var(--shadow);
+  margin-bottom: 28px;
+}
+.hero-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  gap: 24px;
+}
+.hero-text h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+}
+.hero-text h1 span { color: var(--amber); }
+.hero-text p {
+  margin-top: 8px;
+  color: var(--text-soft);
+  font-size: 14px;
+  max-width: 560px;
+}
+.frameworks-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.fw-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+}
+.fw-tag.gdpr    { background: #dbeafe; color: #1d4ed8; }
+.fw-tag.sox     { background: #f0fdf4; color: #15803d; }
+.fw-tag.hipaa   { background: #fdf4ff; color: #7e22ce; }
+.fw-tag.pci     { background: #fff7ed; color: #c2410c; }
+.fw-tag.ins     { background: #ecfdf5; color: #065f46; }
+
+/* Drop zone */
+.upload-area {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+}
+.dropzone {
+  flex: 1;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fafbfc;
+  position: relative;
+}
+.dropzone:hover, .dropzone.dragover {
+  border-color: var(--amber);
+  background: var(--amber-bg);
+}
+.dropzone.has-file {
+  border-color: var(--green);
+  background: var(--green-bg);
+}
+.dropzone-icon { font-size: 36px; margin-bottom: 10px; }
+.dropzone-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.dropzone-sub { font-size: 13px; color: var(--text-soft); }
+.dropzone-file-name {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--green);
+  font-weight: 600;
+  margin-top: 8px;
+  display: none;
+}
+.dropzone.has-file .dropzone-file-name { display: block; }
+.dropzone.has-file .dropzone-icon::after { content: '📄'; }
+#file-input { display: none; }
+
+.upload-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 220px;
+}
+.control-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+input[type=range] {
+  flex: 1;
+  accent-color: var(--amber);
+  height: 4px;
+}
+.slider-val {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  min-width: 24px;
+  text-align: center;
+}
+.btn-run {
+  background: var(--amber);
+  color: var(--navy);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: -0.2px;
+}
+.btn-run:hover { background: var(--amber-dim); transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn-run:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.btn-run .spinner {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(15,31,61,0.3);
+  border-top-color: var(--navy);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: none;
+}
+.btn-run.loading .spinner { display: block; }
+.btn-run.loading .btn-text { display: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Status bar ───────────────────────────────────────── */
+.status-bar {
+  display: none;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  font-size: 13px;
+  margin-top: 16px;
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+.status-bar.visible { display: flex; }
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  animation: pulse 1s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.status-bar.done .status-dot { background: var(--green); animation: none; }
+.status-bar.error .status-dot { background: var(--red); animation: none; }
+
+/* ── Results section ──────────────────────────────────── */
+#results-section {
+  display: none;
+  animation: fadeUp 0.5s ease;
+}
+#results-section.visible { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Stat cards ───────────────────────────────────────── */
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px 16px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform 0.2s;
+}
+.stat-card:hover { transform: translateY(-2px); }
+.stat-card-val {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.1;
+}
+.stat-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 6px;
+}
+
+/* ── Charts row ───────────────────────────────────────── */
+.charts-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.chart-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 16px 12px 8px 12px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+.chart-card.gauge-card {
+  grid-column: unset;
+  max-width: unset;
+  margin: 0;
+}
+.chart-card h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+/* ── Section card ─────────────────────────────────────── */
+.section-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+.section-card h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-card h2 .count-badge {
+  background: var(--navy);
+  color: var(--white);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* ── Action plan ──────────────────────────────────────── */
+.action-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.action-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  background: #fafbfc;
+  transition: background 0.15s;
+  user-select: none;
+}
+.action-header:hover { background: #f0f4f8; }
+.action-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.action-rule-id {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  min-width: 90px;
+}
+.action-title { flex: 1; font-size: 14px; font-weight: 500; }
+.sev-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+}
+.sev-CRITICAL { background: var(--red-bg);    color: var(--red); }
+.sev-HIGH     { background: var(--orange-bg); color: var(--orange); }
+.sev-MEDIUM   { background: var(--amber-bg);  color: #92400e; }
+.action-chevron {
+  color: var(--text-soft);
+  transition: transform 0.2s;
+  font-size: 12px;
+}
+.action-item.open .action-chevron { transform: rotate(180deg); }
+.action-body {
+  display: none;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  background: var(--white);
+}
+.action-item.open .action-body { display: block; }
+.action-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 8px 16px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.action-row-label {
+  font-weight: 600;
+  color: var(--text-soft);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding-top: 1px;
+}
+.action-row-val { color: var(--text); }
+.action-row-val.gap-val  { color: var(--red); }
+.action-row-val.rec-val  { color: #1d4ed8; }
+
+/* ── Results table ────────────────────────────────────── */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+thead tr {
+  background: var(--navy);
+  color: var(--white);
+}
+thead th {
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+tbody tr:hover { background: #f8faff; }
+tbody td {
+  padding: 12px 14px;
+  vertical-align: top;
+}
+.td-rule-id {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.td-framework {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  display: inline-block;
+}
+.fw-GDPR              { background:#dbeafe; color:#1d4ed8; }
+.fw-SOX               { background:#f0fdf4; color:#15803d; }
+.fw-HIPAA             { background:#fdf4ff; color:#7e22ce; }
+.fw-PCI_DSS           { background:#fff7ed; color:#c2410c; }
+.fw-Insurance_Compliance { background:#ecfdf5; color:#065f46; }
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.st-COMPLIANT       { background: var(--green-bg);  color: var(--green); }
+.st-NON_COMPLIANT   { background: var(--red-bg);    color: var(--red); }
+.st-PARTIAL         { background: var(--amber-bg);  color: #92400e; }
+.st-NOT_APPLICABLE  { background: var(--grey-bg);   color: var(--grey); }
+
+.conf-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 90px;
+}
+.conf-bar-bg {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.conf-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--green);
+  transition: width 0.6s ease;
+}
+.conf-val {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-soft);
+  min-width: 32px;
+}
+.td-reasoning { color: var(--text-soft); font-size: 12px; font-style: italic; max-width: 180px; }
+.td-evidence  { color: var(--text); font-size: 12px; max-width: 200px; }
+.td-gap       { color: var(--red); font-size: 12px; max-width: 180px; }
+.td-rec       { color: #1d4ed8; font-size: 12px; max-width: 180px; }
+
+/* ── Download bar ─────────────────────────────────────── */
+.download-bar {
+  background: var(--navy);
+  border-radius: var(--radius);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.download-bar-text h3 {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.download-bar-text p { color: rgba(255,255,255,0.5); font-size: 13px; }
+.download-bar-actions { display: flex; gap: 12px; }
+.btn-download {
+  background: var(--amber);
+  color: var(--navy);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-download:hover { background: var(--amber-dim); transform: translateY(-1px); }
+.btn-new {
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-sm);
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-new:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
+
+/* ── Empty / error state ──────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+.error-box {
+  background: var(--red-bg);
+  border: 1px solid #fca5a5;
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  color: var(--red);
+  font-size: 13px;
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  white-space: pre-wrap;
+  display: none;
+}
+.error-box.visible { display: block; }
+
+/* ── Footer ───────────────────────────────────────────── */
+.footer {
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 12px;
+  padding: 20px;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .stat-cards { grid-template-columns: repeat(3, 1fr); }
+  .charts-row { grid-template-columns: 1fr; }
+  .chart-card.gauge-card { max-width: 100%; }
+  .upload-area { flex-direction: column; }
+  .upload-controls { min-width: unset; }
+}
+
+/* ── Filter buttons ───────────────────────────────────────── */
+.filter-btn {
+  background: var(--grey-bg);
+  color: var(--text-soft);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font-ui);
+}
+.filter-btn:hover { background: var(--border); color: var(--text); }
+.filter-btn.active {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+/* ── Chat panel ───────────────────────────────────────── */
+.chat-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 56px;
+  height: 56px;
+  background: var(--amber);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(245,158,11,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  z-index: 1000;
+  transition: all 0.2s ease;
+}
+.chat-fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(245,158,11,0.6); }
+.chat-fab.visible { display: flex; }
+
+.chat-panel {
+  position: fixed;
+  bottom: 100px;
+  right: 32px;
+  width: 400px;
+  height: 520px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 48px rgba(15,31,61,0.22);
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  overflow: hidden;
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+.chat-panel.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.chat-header {
+  background: var(--navy);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.chat-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.chat-header-icon {
+  width: 32px; height: 32px;
+  background: var(--amber);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.chat-header-text h4 {
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+.chat-header-text p {
+  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+  margin: 0;
+}
+.chat-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.chat-close:hover { color: var(--white); }
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+}
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-track { background: transparent; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.chat-msg {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+}
+.chat-msg.user { align-self: flex-end; align-items: flex-end; }
+.chat-msg.ai   { align-self: flex-start; align-items: flex-start; }
+
+.chat-bubble {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.chat-msg.user .chat-bubble {
+  background: var(--amber);
+  color: var(--navy);
+  font-weight: 500;
+  border-bottom-right-radius: 4px;
+}
+.chat-msg.ai .chat-bubble {
+  background: var(--grey-bg);
+  color: var(--text);
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--border);
+}
+.chat-msg-time {
+  font-size: 10px;
+  color: var(--text-soft);
+  margin-top: 3px;
+  padding: 0 4px;
+}
+
+/* Typing indicator */
+.typing-dots {
+  display: flex;
+  gap: 4px;
+  padding: 12px 14px;
+  background: var(--grey-bg);
+  border-radius: 12px;
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--border);
+  width: fit-content;
+}
+.typing-dots span {
+  width: 6px; height: 6px;
+  background: var(--text-soft);
+  border-radius: 50%;
+  animation: typingBounce 1.2s infinite;
+}
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingBounce {
+  0%,60%,100% { transform: translateY(0); opacity: 0.4; }
+  30%          { transform: translateY(-6px); opacity: 1; }
+}
+
+/* Suggested questions */
+.chat-suggestions {
+  padding: 0 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.chat-suggestions p {
+  font-size: 11px;
+  color: var(--text-soft);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 4px 0;
+}
+.suggestion-chip {
+  background: var(--grey-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--navy);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+  font-family: var(--font-ui);
+  font-weight: 500;
+}
+.suggestion-chip:hover {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+/* Input area */
+.chat-input-area {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  flex-shrink: 0;
+  background: var(--white);
+}
+.chat-input {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  resize: none;
+  outline: none;
+  max-height: 80px;
+  min-height: 40px;
+  transition: border-color 0.15s;
+  color: var(--text);
+  background: var(--white);
+}
+.chat-input:focus { border-color: var(--amber); }
+.chat-input::placeholder { color: var(--text-soft); }
+.chat-send {
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.chat-send:hover { background: var(--navy-mid); }
+.chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+@media (max-width: 900px) {
+  .chat-panel { width: calc(100vw - 32px); right: 16px; bottom: 90px; }
+  .chat-fab   { right: 16px; bottom: 16px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ── Navbar ─────────────────────────────────────────── -->
+<nav class="navbar">
+  <a class="navbar-brand" href="#">
+    <div class="navbar-logo">🔍</div>
+    <span class="navbar-title">audit<span>iq</span></span>
+  </a>
+  <div class="navbar-meta">
+    <span class="navbar-badge grey">TCS × AMD AI Hackathon 2026</span>
+    <span class="navbar-badge">Track 1 — Agents</span>
+  </div>
+</nav>
+
+<!-- ── Main ───────────────────────────────────────────── -->
+<main class="main">
+
+  <!-- Hero / Upload -->
+  <div class="hero">
+    <div class="hero-header">
+      <div class="hero-text">
+        <h1>AI-Powered <span>Compliance</span> Audit</h1>
+        <p>Upload any financial, insurance, or policy document. auditiq validates it against enterprise compliance frameworks using RAG + Qwen2.5-7B on AMD ROCm, and generates a detailed audit report with confidence scores and remediation steps.</p>
+        <div class="frameworks-row">
+          <span class="fw-tag gdpr">GDPR</span>
+          <span class="fw-tag sox">SOX</span>
+          <span class="fw-tag hipaa">HIPAA</span>
+          <span class="fw-tag pci">PCI-DSS</span>
+          <span class="fw-tag ins">Insurance</span>
+          <span class="fw-tag" style="background:#f1f5f9;color:#475569">22 Rules</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="upload-area">
+      <!-- Drop zone -->
+      <div class="dropzone" id="dropzone" onclick="document.getElementById('file-input').click()">
+        <input type="file" id="file-input" accept=".pdf,.txt" onchange="handleFileSelect(this)"/>
+        <div class="dropzone-icon" id="drop-icon">📂</div>
+        <div class="dropzone-text" id="drop-text">Drop your document here</div>
+        <div class="dropzone-sub">PDF or TXT &nbsp;·&nbsp; Click or drag to upload</div>
+        <div class="dropzone-file-name" id="file-name-display"></div>
+      </div>
+
+      <!-- Controls -->
+      <div class="upload-controls">
+        <div class="control-group">
+          <label>Chunks to validate</label>
+          <div class="slider-row">
+            <input type="range" id="chunk-slider" min="1" max="15" value="6"
+                   oninput="document.getElementById('chunk-val').textContent=this.value"/>
+            <span class="slider-val" id="chunk-val">6</span>
+          </div>
+          <div style="font-size:11px;color:var(--text-soft);margin-top:4px">Higher = more thorough, slower</div>
+        </div>
+        <button class="btn-run" id="run-btn" onclick="runAudit()">
+          <div class="spinner"></div>
+          <span class="btn-text">🚀 &nbsp;Run Compliance Audit</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Status bar -->
+    <div class="status-bar" id="status-bar">
+      <div class="status-dot"></div>
+      <span id="status-text">Initialising audit pipeline...</span>
+    </div>
+    <div class="error-box" id="error-box"></div>
+  </div>
+
+  <!-- ── Results ─────────────────────────────────────── -->
+  <div id="results-section">
+
+    <!-- Download bar -->
+    <div class="download-bar">
+      <div class="download-bar-text">
+        <h3>✅ Audit Complete — <span id="dl-doc-name">document.pdf</span></h3>
+        <p>Professional PDF audit report with evidence trail and remediation plan ready to download</p>
+      </div>
+      <div class="download-bar-actions">
+        <a class="btn-download" href="/download-report" target="_blank">📥 &nbsp;Download PDF Report</a>
+        <button class="btn-new" onclick="resetUI()">🔄 &nbsp;New Audit</button>
+      </div>
+    </div>
+
+    <!-- Stat cards -->
+    <div class="stat-cards" id="stat-cards">
+      <div class="stat-card score">
+        <div class="stat-card-val" id="sc-score">–</div>
+        <div class="stat-card-label">Compliance Score</div>
+      </div>
+      <div class="stat-card" id="sc-risk-card">
+        <div class="stat-card-val" id="sc-risk">–</div>
+        <div class="stat-card-label">Risk Level</div>
+      </div>
+      <div class="stat-card rules">
+        <div class="stat-card-val" id="sc-rules">–</div>
+        <div class="stat-card-label">Rules Checked</div>
+      </div>
+      <div class="stat-card tokens">
+        <div class="stat-card-val" id="sc-tokens">–</div>
+        <div class="stat-card-label">Tokens Used</div>
+      </div>
+      <div class="stat-card latency">
+        <div class="stat-card-val" id="sc-latency">–</div>
+        <div class="stat-card-label">Avg Latency</div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-row">
+      <div class="chart-card gauge-card">
+        <h3>Overall Score</h3>
+        <div id="chart-gauge" style="height:230px;width:100%;min-width:0"></div>
+      </div>
+      <div class="chart-card">
+        <h3>Score by Framework</h3>
+        <div id="chart-bars" style="height:230px;width:100%;min-width:0"></div>
+      </div>
+      <div class="chart-card">
+        <h3>Status Breakdown</h3>
+        <div id="chart-pie" style="height:230px;width:100%;min-width:0"></div>
+      </div>
+    </div>
+
+    <!-- Action Plan -->
+    <div class="section-card">
+      <h2>🛠️ Remediation Action Plan <span class="count-badge" id="action-count">0</span></h2>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center;">
+        <span style="font-size:12px;font-weight:600;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.5px;">Show:</span>
+        <button class="filter-btn active" onclick="filterActions('ALL')"      id="af-ALL">All Issues</button>
+        <button class="filter-btn"        onclick="filterActions('CRITICAL')" id="af-CRITICAL">🔴 Critical</button>
+        <button class="filter-btn"        onclick="filterActions('HIGH')"     id="af-HIGH">🟠 High</button>
+        <button class="filter-btn"        onclick="filterActions('MEDIUM')"   id="af-MEDIUM">🟡 Medium</button>
+      </div>
+      <div id="action-plan-body"></div>
+    </div>
+
+    <!-- Results Table -->
+    <div class="section-card">
+      <h2>📄 Detailed Validation Results <span class="count-badge" id="table-count">0</span></h2>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center;">
+        <span style="font-size:12px;font-weight:600;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.5px;">Filter:</span>
+        <button class="filter-btn active" onclick="filterTable('ALL')"                      id="filter-ALL">All</button>
+        <button class="filter-btn"        onclick="filterTable('GDPR')"                     id="filter-GDPR">GDPR</button>
+        <button class="filter-btn"        onclick="filterTable('SOX')"                      id="filter-SOX">SOX</button>
+        <button class="filter-btn"        onclick="filterTable('HIPAA')"                    id="filter-HIPAA">HIPAA</button>
+        <button class="filter-btn"        onclick="filterTable('PCI_DSS')"                  id="filter-PCI_DSS">PCI-DSS</button>
+        <button class="filter-btn"        onclick="filterTable('Insurance_Compliance')"     id="filter-Insurance_Compliance">Insurance</button>
+        <span style="margin-left:8px;font-size:12px;font-weight:600;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.5px;">Status:</span>
+        <button class="filter-btn active" onclick="filterStatus('ALL')"          id="fstatus-ALL">All</button>
+        <button class="filter-btn"        onclick="filterStatus('NON_COMPLIANT')" id="fstatus-NON_COMPLIANT">❌ Non-Compliant</button>
+        <button class="filter-btn"        onclick="filterStatus('PARTIAL')"       id="fstatus-PARTIAL">⚠️ Partial</button>
+        <button class="filter-btn"        onclick="filterStatus('COMPLIANT')"     id="fstatus-COMPLIANT">✅ Compliant</button>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Rule ID</th>
+              <th>Framework</th>
+              <th>Severity</th>
+              <th>Status</th>
+              <th>Confidence</th>
+              <th>Reasoning</th>
+              <th>Evidence</th>
+              <th>Gap</th>
+              <th>Recommendation</th>
+            </tr>
+          </thead>
+          <tbody id="results-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /results-section -->
+
+  <!-- Floating chat button -->
+  <button class="chat-fab" id="chat-fab" onclick="toggleChat()" title="Ask AI about this audit">
+    💬
+  </button>
+
+  <!-- Chat panel -->
+  <div class="chat-panel" id="chat-panel">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-header-icon">🤖</div>
+        <div class="chat-header-text">
+          <h4>auditiq Assistant</h4>
+          <p id="chat-doc-label">Ask anything about this audit</p>
+        </div>
+      </div>
+      <button class="chat-close" onclick="toggleChat()">&#x2715;</button>
+    </div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-suggestions" id="chat-suggestions">
+      <p>Suggested questions</p>
+      <button class="suggestion-chip" onclick="askSuggestion('What is the highest priority issue to fix?')">
+        🔴 What is the highest priority issue to fix?
+      </button>
+      <button class="suggestion-chip" onclick="askSuggestion('Summarise the key compliance gaps found')">
+        📋 Summarise the key compliance gaps found
+      </button>
+      <button class="suggestion-chip" onclick="askSuggestion('Which frameworks are fully compliant?')">
+        ✅ Which frameworks are fully compliant?
+      </button>
+      <button class="suggestion-chip" onclick="askSuggestion('Explain how the overall score was calculated')">
+        📊 Explain how the overall score was calculated
+      </button>
+    </div>
+    <div class="chat-input-area">
+      <textarea class="chat-input" id="chat-input"
+        placeholder="Ask about the audit findings..."
+        rows="1"
+        onkeydown="handleChatKey(event)"
+        oninput="autoResize(this)"></textarea>
+      <button class="chat-send" id="chat-send-btn" onclick="sendChat()">&#x27a4;</button>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  auditiq &nbsp;·&nbsp; TCS &amp; AMD AI Hackathon 2026 &nbsp;·&nbsp;
+  Qwen2.5-7B-Instruct on AMD Instinct MI300X (ROCm 7.2) &nbsp;·&nbsp;
+  FAISS · LangChain · RAG &nbsp;·&nbsp;
+  Built by <a href="https://github.com/hardikjp7" target="_blank"
+    style="color:var(--amber);font-weight:600;text-decoration:none;">
+    @hardikjp7
+  </a>
+</footer>
+
+<script>
+// ── State ───────────────────────────────────────────────
+let selectedFile = null;
+
+// ── Drag & drop ──────────────────────────────────────────
+const dz = document.getElementById('dropzone');
+dz.addEventListener('dragover',  e => { e.preventDefault(); dz.classList.add('dragover'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+dz.addEventListener('drop', e => {
+  e.preventDefault();
+  dz.classList.remove('dragover');
+  const f = e.dataTransfer.files[0];
+  if (f) setFile(f);
+});
+
+function handleFileSelect(input) {
+  if (input.files[0]) setFile(input.files[0]);
+}
+
+function setFile(f) {
+  selectedFile = f;
+  dz.classList.add('has-file');
+  document.getElementById('drop-icon').textContent = '📄';
+  document.getElementById('drop-text').textContent  = 'File selected';
+  document.getElementById('file-name-display').textContent = f.name;
+}
+
+// ── Run audit ────────────────────────────────────────────
+async function runAudit() {
+  if (!selectedFile) {
+    setStatus('Please upload a document first.', 'error');
+    return;
+  }
+
+  const btn    = document.getElementById('run-btn');
+  const chunks = document.getElementById('chunk-slider').value;
+
+  btn.disabled = true;
+  btn.classList.add('loading');
+  const rs = document.getElementById('results-section');
+  const eb = document.getElementById('error-box');
+  if (rs) rs.classList.remove('visible');
+  if (eb) eb.classList.remove('visible');
+  setStatus('Parsing document and running RAG pipeline...', 'loading');
+
+  const fd = new FormData();
+  fd.append('file', selectedFile);
+  fd.append('max_chunks', chunks);
+
+  try {
+    setStatus('Validating against compliance frameworks (this takes ~30-60s)...', 'loading');
+
+    const res  = await fetch('/audit', { method: 'POST', body: fd });
+    const data = await res.json();
+
+    if (!data.success) {
+      showError(data.error + '\n\n' + (data.traceback || ''));
+      setStatus('Audit failed. See error below.', 'error');
+      return;
+    }
+
+    setStatus('Rendering results...', 'loading');
+    renderResults(data);
+    setStatus('Audit complete!', 'done');
+
+  } catch (err) {
+    showError(err.toString());
+    setStatus('Network error — is the FastAPI server running?', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.classList.remove('loading');
+  }
+}
+
+// ── Render results ────────────────────────────────────────
+function renderResults(data) {
+  const { score_data, validations, metrics, doc_name } = data;
+
+  // Doc name
+  document.getElementById('dl-doc-name').textContent = doc_name;
+
+  // Stat cards
+  document.getElementById('sc-score').textContent   = score_data.overall_score + '%';
+  document.getElementById('sc-risk').textContent    = score_data.risk_level;
+  document.getElementById('sc-rules').textContent   = score_data.total_rules;
+  document.getElementById('sc-tokens').textContent  = metrics.total_tokens;
+  document.getElementById('sc-latency').textContent = metrics.avg_latency_sec + 's';
+
+  const riskCard = document.getElementById('sc-risk-card');
+  riskCard.className = 'stat-card risk-' + score_data.risk_level;
+
+  // Charts
+  renderGauge(score_data.overall_score, score_data.risk_level);
+  renderBars(score_data.framework_scores);
+  renderPie(score_data.status_counts);
+
+  // Action plan
+  renderActionPlan(score_data.issues || []);
+
+  // Table
+  renderTable(validations);
+
+  // Show
+  document.getElementById('results-section').classList.add('visible');
+  document.getElementById('results-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Force Plotly to recalculate container widths after DOM is visible
+  setTimeout(() => {
+    Plotly.Plots.resize(document.getElementById('chart-gauge'));
+    Plotly.Plots.resize(document.getElementById('chart-bars'));
+    Plotly.Plots.resize(document.getElementById('chart-pie'));
+  }, 100);
+  // Initialise chat with current audit data
+  console.log('About to call initChat, doc_name:', doc_name);
+  console.log('score_data available:', !!score_data);
+  console.log('validations count:', validations ? validations.length : 'null');
+  initChat({ doc_name: doc_name, score_data: score_data,
+             validations: validations, metrics: metrics });
+}
+
+// ── Charts ────────────────────────────────────────────────
+const RISK_COLORS = {
+  LOW: '#16a34a', MEDIUM: '#ca8a04', HIGH: '#ea580c', CRITICAL: '#dc2626'
+};
+const STATUS_COLORS = {
+  COMPLIANT: '#16a34a', NON_COMPLIANT: '#dc2626',
+  PARTIAL: '#ca8a04',   NOT_APPLICABLE: '#9ca3af'
+};
+
+function renderGauge(score, risk) {
+  const color = RISK_COLORS[risk] || '#6b7280';
+  Plotly.newPlot('chart-gauge', [{
+    type: 'indicator',
+    mode: 'gauge+number',
+    value: score,
+    number: { suffix: '%', font: { size: 30, family: 'JetBrains Mono', color: color } },
+    gauge: {
+      axis: { range: [0,100], tickwidth: 1, tickcolor: '#e5e7eb', tickfont: { size: 10 } },
+      bar:  { color: color, thickness: 0.28 },
+      bgcolor: 'white',
+      borderwidth: 0,
+      steps: [
+        { range: [0,40],  color: '#fee2e2' },
+        { range: [40,60], color: '#ffedd5' },
+        { range: [60,80], color: '#fef9c3' },
+        { range: [80,100],color: '#dcfce7' }
+      ],
+      threshold: { line: { color: '#0f1f3d', width: 3 }, thickness: 0.8, value: 80 }
+    }
+  }], {
+    height: 230, width: null, margin: { t: 16, b: 0, l: 16, r: 16 },
+    paper_bgcolor: 'transparent', font: { family: 'Inter' },
+    autosize: true
+  }, { displayModeBar: false, responsive: true });
+}
+
+function renderBars(fwScores) {
+  if (!fwScores || !Object.keys(fwScores).length) return;
+  const fws    = Object.keys(fwScores);
+  const scores = Object.values(fwScores);
+  const colors = scores.map(s =>
+    s >= 80 ? '#16a34a' : s >= 60 ? '#ca8a04' : s >= 40 ? '#ea580c' : '#dc2626'
+  );
+  Plotly.newPlot('chart-bars', [{
+    type: 'bar', orientation: 'h',
+    x: scores, y: fws,
+    marker: { color: colors },
+    text: scores.map(s => s + '%'),
+    textposition: 'outside',
+    hovertemplate: '%{y}: %{x}%<extra></extra>',
+    textfont: { size: 11 }
+  }], {
+    height: 230, width: null,
+    margin: { t: 10, b: 24, l: 110, r: 44 },
+    xaxis: { range: [0, 130], showgrid: true, gridcolor: '#f3f4f6', zeroline: false, tickfont: { size: 10 } },
+    yaxis: { automargin: true, tickfont: { size: 11 } },
+    paper_bgcolor: 'transparent',
+    plot_bgcolor:  'transparent',
+    font: { family: 'Inter', size: 11 },
+    autosize: true
+  }, { displayModeBar: false, responsive: true });
+}
+
+function renderPie(statusCounts) {
+  if (!statusCounts) return;
+  const icons  = { COMPLIANT:'✅ ', NON_COMPLIANT:'❌ ', PARTIAL:'⚠️ ', NOT_APPLICABLE:'➖ ' };
+  const labels = Object.keys(statusCounts).filter(k => k !== 'NOT_APPLICABLE');
+  const values = labels.map(k => statusCounts[k]);
+  const colors = labels.map(k => STATUS_COLORS[k] || '#9ca3af');
+  const display= labels.map(k => (icons[k]||'') + k.replace('_',' '));
+
+  Plotly.newPlot('chart-pie', [{
+    type: 'pie', hole: 0.5,
+    labels: display, values,
+    marker: { colors },
+    textinfo: 'percent',
+    hovertemplate: '%{label}: %{value}<extra></extra>',
+    textfont: { size: 11, family: 'Inter' }
+  }], {
+    height: 230, width: null,
+    margin: { t: 10, b: 60, l: 10, r: 10 },
+    showlegend: true,
+    legend: { orientation: 'h', font: { size: 10, family: 'Inter' }, x: 0, y: -0.15, xanchor: 'left' },
+    paper_bgcolor: 'transparent',
+    font: { family: 'Inter' },
+    autosize: true
+  }, { displayModeBar: false, responsive: true });
+}
+
+// ── Action plan ────────────────────────────────────────────
+function renderActionPlan(issues) {
+  const sevOrder = { CRITICAL: 0, HIGH: 1, MEDIUM: 2 };
+  const sorted   = [...issues].sort((a,b) =>
+    (sevOrder[a.severity]||2) - (sevOrder[b.severity]||2));
+
+  document.getElementById('action-count').textContent = sorted.length;
+  const body = document.getElementById('action-plan-body');
+
+  if (!sorted.length) {
+    body.innerHTML = '<div class="empty-state">✅ No issues found — document is fully compliant!</div>';
+    return;
+  }
+
+  body.innerHTML = sorted.map((issue, i) => `
+    <div class="action-item" id="action-${i}" data-sev="${issue.severity}">
+      <div class="action-header" onclick="toggleAction(${i})">
+        <div class="action-num">${i+1}</div>
+        <div class="action-rule-id">${issue.rule_id || ''}</div>
+        <div class="action-title">${issue.framework || ''}</div>
+        <span class="sev-badge sev-${issue.severity}">${issue.severity}</span>
+        <span class="sev-badge" style="background:${issue.status==='NON_COMPLIANT'?'#fee2e2':'#fffbeb'};color:${issue.status==='NON_COMPLIANT'?'#dc2626':'#92400e'}">${(issue.status||'').replace('_',' ')}</span>
+        <span class="action-chevron">▼</span>
+      </div>
+      <div class="action-body">
+        <div class="action-row">
+          <div class="action-row-label">Gap</div>
+          <div class="action-row-val gap-val">${issue.gap || '—'}</div>
+        </div>
+        <div class="action-row">
+          <div class="action-row-label">Action</div>
+          <div class="action-row-val rec-val">${issue.recommendation || '—'}</div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleAction(i) {
+  document.getElementById('action-'+i).classList.toggle('open');
+}
+
+// ── Table ──────────────────────────────────────────────────
+function renderTable(validations) {
+  document.getElementById('table-count').textContent = validations.length;
+  const tbody = document.getElementById('results-tbody');
+
+  if (!validations.length) {
+    tbody.innerHTML = '<tr><td colspan="9" class="empty-state">No validations returned.</td></tr>';
+    return;
+  }
+
+  const confColor = c => c >= 80 ? '#16a34a' : c >= 60 ? '#ca8a04' : '#dc2626';
+  const statusIcon = { COMPLIANT:'✅', NON_COMPLIANT:'❌', PARTIAL:'⚠️', NOT_APPLICABLE:'➖' };
+
+  tbody.innerHTML = validations.map(v => {
+    const conf  = v.confidence_score || 0;
+    const st    = v.status || '';
+    const fw    = v.framework || '';
+    return `
+    <tr data-fw="${fw}" data-st="${st}">
+      <td><span class="td-rule-id">${v.rule_id||''}</span></td>
+      <td><span class="td-framework fw-${fw}">${fw}</span></td>
+      <td><span class="sev-badge sev-${v.severity}">${v.severity||''}</span></td>
+      <td><span class="status-chip st-${st}">${statusIcon[st]||''} ${st.replace('_',' ')}</span></td>
+      <td>
+        <div class="conf-bar-wrap">
+          <div class="conf-bar-bg">
+            <div class="conf-bar-fill" style="width:${conf}%;background:${confColor(conf)}"></div>
+          </div>
+          <span class="conf-val">${conf}%</span>
+        </div>
+      </td>
+      <td class="td-reasoning">${(v.reasoning||'').substring(0,100)}</td>
+      <td class="td-evidence">${(v.evidence||'').substring(0,120)}</td>
+      <td class="td-gap">${v.gap||''}</td>
+      <td class="td-rec">${v.recommendation||''}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── UI helpers ────────────────────────────────────────────
+function setStatus(msg, type) {
+  const bar = document.getElementById('status-bar');
+  document.getElementById('status-text').textContent = msg;
+  bar.className = 'status-bar visible ' + (type || '');
+}
+
+function showError(msg) {
+  const box = document.getElementById('error-box');
+  box.textContent = msg;
+  box.classList.add('visible');
+}
+
+function resetUI() {
+  selectedFile = null;
+  document.getElementById('file-input').value       = '';
+  document.getElementById('file-name-display').textContent = '';
+  document.getElementById('drop-icon').textContent  = '📂';
+  document.getElementById('drop-text').textContent  = 'Drop your document here';
+  document.getElementById('dropzone').classList.remove('has-file');
+  const rs2 = document.getElementById('results-section');
+  const sb2 = document.getElementById('status-bar');
+  const eb2 = document.getElementById('error-box');
+  if (rs2) rs2.classList.remove('visible');
+  if (sb2) sb2.className = 'status-bar';
+  if (eb2) eb2.classList.remove('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── Chat state ────────────────────────────────────────────
+let _chatOpen        = false;
+let _chatAuditData   = null;
+let _chatLoading     = false;
+let _suggestionsShown = true;
+
+function initChat(auditData) {
+  console.log('initChat called', auditData ? 'with data' : 'NO DATA');
+  if (!auditData) { console.error('initChat: auditData is null'); return; }
+  _chatAuditData = auditData;
+  console.log('chat score_data:', auditData.score_data);
+  const label = document.getElementById('chat-doc-label');
+  if (label) label.textContent = 'Analysed: ' + (auditData.doc_name || 'document');
+
+  // Add welcome message
+  const messages = document.getElementById('chat-messages');
+  if (!messages) { console.error('chat-messages element not found'); return; }
+  messages.innerHTML = '';
+  addAIMessage(
+    'Audit complete! I have analysed ' +
+    (auditData.score_data.total_rules || '?') + ' rules across ' +
+    Object.keys(auditData.score_data.framework_scores || {}).length +
+    ' frameworks. Overall score: ' +
+    auditData.score_data.overall_score + '% (' +
+    auditData.score_data.risk_level + ' risk). Ask me anything about the findings.'
+  );
+
+  // Show FAB only after everything is ready
+  const fab = document.getElementById('chat-fab');
+  if (fab) fab.classList.add('visible');
+}
+
+function toggleChat() {
+  _chatOpen = !_chatOpen;
+  const panel = document.getElementById('chat-panel');
+  const fab   = document.getElementById('chat-fab');
+  if (!panel || !fab) return;
+  if (_chatOpen) {
+    panel.classList.add('open');
+    fab.textContent = '✕';
+    document.getElementById('chat-input').focus();
+  } else {
+    panel.classList.remove('open');
+    fab.textContent = '💬';
+  }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 80) + 'px';
+}
+
+function handleChatKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendChat();
+  }
+}
+
+function askSuggestion(question) {
+  document.getElementById('chat-suggestions').style.display = 'none';
+  document.getElementById('chat-input').value = question;
+  sendChat();
+}
+
+async function sendChat() {
+  if (_chatLoading || !_chatAuditData) return;
+
+  const input    = document.getElementById('chat-input');
+  const question = input.value.trim();
+  if (!question) return;
+
+  // Hide suggestions after first message
+  document.getElementById('chat-suggestions').style.display = 'none';
+
+  input.value = '';
+  input.style.height = 'auto';
+
+  addUserMessage(question);
+  showTyping();
+
+  _chatLoading = true;
+  document.getElementById('chat-send-btn').disabled = true;
+
+  try {
+    const payload = {
+      question:    question,
+      score_data:  _chatAuditData.score_data,
+      validations: _chatAuditData.validations,
+      doc_name:    _chatAuditData.doc_name
+    };
+
+    const res  = await fetch(window.location.origin + '/chat', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    });
+    const data = await res.json();
+
+    removeTyping();
+
+    if (data.success) {
+      addAIMessage(data.answer);
+    } else {
+      addAIMessage('Sorry, I could not process that question. Please try again.');
+    }
+  } catch (err) {
+    removeTyping();
+    addAIMessage('Network error — please check the server is running.');
+  } finally {
+    _chatLoading = false;
+    document.getElementById('chat-send-btn').disabled = false;
+    document.getElementById('chat-input').focus();
+  }
+}
+
+function addUserMessage(text) {
+  const messages = document.getElementById('chat-messages');
+  const now = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  messages.innerHTML += `
+    <div class="chat-msg user">
+      <div class="chat-bubble">${escapeHtml(text)}</div>
+      <div class="chat-msg-time">${now}</div>
+    </div>`;
+  scrollChat();
+}
+
+function addAIMessage(text) {
+  const messages = document.getElementById('chat-messages');
+  const now = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  messages.innerHTML += `
+    <div class="chat-msg ai">
+      <div class="chat-bubble">${formatAIResponse(text)}</div>
+      <div class="chat-msg-time">auditiq AI · ${now}</div>
+    </div>`;
+  scrollChat();
+}
+
+function showTyping() {
+  const messages = document.getElementById('chat-messages');
+  messages.innerHTML += `
+    <div class="chat-msg ai" id="typing-indicator">
+      <div class="typing-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>`;
+  scrollChat();
+}
+
+function removeTyping() {
+  const el = document.getElementById('typing-indicator');
+  if (el) el.remove();
+}
+
+function scrollChat() {
+  const messages = document.getElementById('chat-messages');
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function formatAIResponse(text) {
+  text = escapeHtml(text);
+  // Convert **bold** markdown to HTML
+  text = text.replace(/\*\*([^*]+)\*\*/g,
+    '<strong style="color:var(--navy)">$1</strong>');
+  // Convert *italic* markdown to HTML
+  text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  // Bold rule IDs like GDPR-001, SOX-003
+  text = text.replace(/\b([A-Z]{2,10}-\d{3})\b/g,
+    '<strong style="color:var(--navy);font-family:var(--font-mono)">$1</strong>');
+  // Bold percentages
+  text = text.replace(/(\d+\.?\d*%)/g,
+    '<strong style="color:var(--navy)">$1</strong>');
+  // Numbered list items — add line break before each
+  text = text.replace(/(\d+\.\s)/g, '<br><strong>$1</strong>');
+  // Line breaks
+  text = text.replace(/\n/g, '<br>');
+  // Clean up double breaks at start
+  text = text.replace(/^(<br>)+/, '');
+  return text;
+}
+
+</script>
+</body>
+</html>

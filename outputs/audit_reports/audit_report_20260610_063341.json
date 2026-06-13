@@ -1,0 +1,171 @@
+{
+  "report_meta": {
+    "document": "demo_contract_v2.txt",
+    "generated": "2026-06-10T06:33:41.627675",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "embeddings": "BAAI/bge-small-en-v1.5",
+    "frameworks": [
+      "GDPR",
+      "SOX",
+      "HIPAA",
+      "PCI_DSS",
+      "Insurance_Compliance"
+    ]
+  },
+  "score_summary": {
+    "overall_score": 50.0,
+    "risk_level": "HIGH",
+    "framework_scores": {
+      "GDPR": 50.0,
+      "PCI_DSS": 75.0,
+      "HIPAA": 0.0
+    },
+    "status_counts": {
+      "COMPLIANT": 2,
+      "NON_COMPLIANT": 2,
+      "PARTIAL": 2
+    },
+    "total_rules": 6,
+    "issues": [
+      {
+        "rule_id": "GDPR-002",
+        "framework": "GDPR",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "A clear data retention period or deletion schedule is missing.",
+        "recommendation": "Define a specific data retention period or deletion schedule based on the original purpose of data collection."
+      },
+      {
+        "rule_id": "GDPR-005",
+        "framework": "GDPR",
+        "severity": "MEDIUM",
+        "status": "PARTIAL",
+        "gap": "Data processing agreements with all third parties must be GDPR-compliant.",
+        "recommendation": "Ensure that all third-party data processors have GDPR-compliant data processing agreements in place."
+      },
+      {
+        "rule_id": "PCI-003",
+        "framework": "PCI_DSS",
+        "severity": "HIGH",
+        "status": "PARTIAL",
+        "gap": "Documentation of firewall configuration and network segmentation is missing.",
+        "recommendation": "Document the current firewall configuration and network segmentation."
+      },
+      {
+        "rule_id": "HIPAA-004",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "Audit logging mechanisms for PHI access are missing.",
+        "recommendation": "Implement and document audit logging mechanisms for PHI access."
+      }
+    ],
+    "critical_issues": [],
+    "high_issues": [
+      {
+        "rule_id": "GDPR-002",
+        "framework": "GDPR",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "A clear data retention period or deletion schedule is missing.",
+        "recommendation": "Define a specific data retention period or deletion schedule based on the original purpose of data collection."
+      },
+      {
+        "rule_id": "PCI-003",
+        "framework": "PCI_DSS",
+        "severity": "HIGH",
+        "status": "PARTIAL",
+        "gap": "Documentation of firewall configuration and network segmentation is missing.",
+        "recommendation": "Document the current firewall configuration and network segmentation."
+      },
+      {
+        "rule_id": "HIPAA-004",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "Audit logging mechanisms for PHI access are missing.",
+        "recommendation": "Implement and document audit logging mechanisms for PHI access."
+      }
+    ]
+  },
+  "validations": [
+    {
+      "rule_id": "GDPR-001",
+      "framework": "GDPR",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 100,
+      "reasoning": "The document clearly states the lawful basis for processing.",
+      "evidence": "The Company processes personal data under Article 6 of GDPR on the basis of contractual necessity and legitimate interests.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "demo_contract_v2.txt_chunk_0",
+      "chunk_text_preview": "ENTERPRISE DATA PROCESSING & FINANCIAL SERVICES AGREEMENT TechCorp Solutions Ltd. | Version 2.1 | June 2026 SECTION 1: DATA COLLECTION AND LAWFUL BASI"
+    },
+    {
+      "rule_id": "GDPR-002",
+      "framework": "GDPR",
+      "severity": "HIGH",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 85,
+      "reasoning": "The document does not specify a clear data retention period or deletion schedule.",
+      "evidence": "Customer personal data is retained indefinitely for internal analytics and marketing purposes.",
+      "gap": "A clear data retention period or deletion schedule is missing.",
+      "recommendation": "Define a specific data retention period or deletion schedule based on the original purpose of data collection.",
+      "chunk_id": "demo_contract_v2.txt_chunk_0",
+      "chunk_text_preview": "ENTERPRISE DATA PROCESSING & FINANCIAL SERVICES AGREEMENT TechCorp Solutions Ltd. | Version 2.1 | June 2026 SECTION 1: DATA COLLECTION AND LAWFUL BASI"
+    },
+    {
+      "rule_id": "GDPR-005",
+      "framework": "GDPR",
+      "severity": "MEDIUM",
+      "status": "PARTIAL",
+      "confidence_score": 70,
+      "reasoning": "Not all third-party data processors have GDPR-compliant agreements.",
+      "evidence": "Data processing agreements compliant with GDPR Article 28 have been established with 5 of the 8 vendors. Remaining agreements are under review.",
+      "gap": "Data processing agreements with all third parties must be GDPR-compliant.",
+      "recommendation": "Ensure that all third-party data processors have GDPR-compliant data processing agreements in place.",
+      "chunk_id": "demo_contract_v2.txt_chunk_0",
+      "chunk_text_preview": "ENTERPRISE DATA PROCESSING & FINANCIAL SERVICES AGREEMENT TechCorp Solutions Ltd. | Version 2.1 | June 2026 SECTION 1: DATA COLLECTION AND LAWFUL BASI"
+    },
+    {
+      "rule_id": "PCI-003",
+      "framework": "PCI_DSS",
+      "severity": "HIGH",
+      "status": "PARTIAL",
+      "confidence_score": 75,
+      "reasoning": "The document mentions quarterly review but does not specify documentation of firewall configuration and network segmentation.",
+      "evidence": "systems is maintained via firewall rules reviewed quarterly.",
+      "gap": "Documentation of firewall configuration and network segmentation is missing.",
+      "recommendation": "Document the current firewall configuration and network segmentation.",
+      "chunk_id": "demo_contract_v2.txt_chunk_1",
+      "chunk_text_preview": "systems is maintained via firewall rules reviewed quarterly."
+    },
+    {
+      "rule_id": "PCI-004",
+      "framework": "PCI_DSS",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 90,
+      "reasoning": "The document does not mention vulnerability scanning or patching, which are not explicitly required by this rule.",
+      "evidence": "systems is maintained via firewall rules reviewed quarterly.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "demo_contract_v2.txt_chunk_1",
+      "chunk_text_preview": "systems is maintained via firewall rules reviewed quarterly."
+    },
+    {
+      "rule_id": "HIPAA-004",
+      "framework": "HIPAA",
+      "severity": "HIGH",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 60,
+      "reasoning": "The document does not mention audit logging mechanisms for PHI access.",
+      "evidence": "systems is maintained via firewall rules reviewed quarterly.",
+      "gap": "Audit logging mechanisms for PHI access are missing.",
+      "recommendation": "Implement and document audit logging mechanisms for PHI access.",
+      "chunk_id": "demo_contract_v2.txt_chunk_1",
+      "chunk_text_preview": "systems is maintained via firewall rules reviewed quarterly."
+    }
+  ]
+}

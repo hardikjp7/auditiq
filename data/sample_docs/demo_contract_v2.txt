@@ -1,0 +1,65 @@
+ENTERPRISE DATA PROCESSING & FINANCIAL SERVICES AGREEMENT
+TechCorp Solutions Ltd. | Version 2.1 | June 2026
+
+SECTION 1: DATA COLLECTION AND LAWFUL BASIS
+The Company processes personal data under Article 6 of GDPR on the basis of
+contractual necessity and legitimate interests. All data subjects are informed
+of the legal basis at the point of collection via our privacy notice.
+
+SECTION 2: DATA RETENTION
+Customer personal data is retained indefinitely for internal analytics and
+marketing purposes. No formal deletion schedule has been established.
+Data is shared with third-party advertising partners without explicit consent.
+
+SECTION 3: DATA BREACH NOTIFICATION
+In the event of a personal data breach, the Company will notify the relevant
+supervisory authority within 72 hours of becoming aware. Affected individuals
+will also be notified without undue delay where the breach poses a high risk.
+A breach response team and documented incident response plan are maintained.
+
+SECTION 4: INTERNAL FINANCIAL CONTROLS
+The Company does not maintain formally documented internal controls over
+financial reporting. No independent auditor review has been conducted
+for the current fiscal year. ICFR assessments are performed informally.
+
+SECTION 5: FINANCIAL RECORD RETENTION
+All financial records, audit workpapers, and transaction logs are retained
+for a minimum period of 7 years in accordance with SOX requirements.
+Records are stored in encrypted, access-controlled repositories.
+
+SECTION 6: WHISTLEBLOWER POLICY
+Employees are encouraged to report concerns to their direct manager only.
+No formal anonymous whistleblower channel or retaliation protection
+policy exists at this time.
+
+SECTION 7: CUSTOMER IDENTITY VERIFICATION
+Basic email verification is used for standard account creation. For
+high-value transactions exceeding $10,000, enhanced due diligence
+is performed. However, no formal AML screening process is documented.
+
+SECTION 8: CAPITAL ADEQUACY
+The Company maintains capital reserves as per regulatory minimums.
+Quarterly solvency assessments are conducted by the finance team
+and reviewed by the board. Capital adequacy ratios are reported annually.
+
+SECTION 9: CLAIMS PROCESSING
+Insurance claims are acknowledged within 10 business days of receipt.
+Resolution targets are set at 45 business days, exceeding the 30-day
+regulatory requirement. A claims tracking system is in place.
+
+SECTION 10: THIRD PARTY DATA PROCESSORS
+Customer data is shared with 8 external vendors. Data processing
+agreements compliant with GDPR Article 28 have been established
+with 5 of the 8 vendors. Remaining agreements are under review.
+
+SECTION 11: PROTECTED HEALTH INFORMATION
+The Company handles limited PHI for employee benefits administration.
+Access is restricted to HR personnel only. However, no formal
+BAA agreements exist with our benefits vendors, and audit logging
+for PHI access has not been implemented.
+
+SECTION 12: PAYMENT CARD DATA
+Customer payment transactions are processed via a PCI-DSS certified
+third-party payment gateway. The Company does not store raw PAN data.
+Network segmentation between payment and internal systems is maintained
+via firewall rules reviewed quarterly.

@@ -1,0 +1,62 @@
+{
+  "framework": "SOX",
+  "version": "Sarbanes-Oxley Act 2002",
+  "rules": [
+    {
+      "id": "SOX-001",
+      "category": "Internal Controls",
+      "title": "Internal control over financial reporting",
+      "description": "Management must assess the effectiveness of internal controls over financial reporting.",
+      "keywords": [
+        "internal control",
+        "financial reporting",
+        "ICFR",
+        "assessment"
+      ],
+      "severity": "CRITICAL",
+      "required_clause": "The document must describe internal controls over financial reporting."
+    },
+    {
+      "id": "SOX-002",
+      "category": "Audit",
+      "title": "Independent auditor attestation",
+      "description": "External auditors must attest to management's assessment of internal controls.",
+      "keywords": [
+        "auditor",
+        "attestation",
+        "external audit",
+        "independent"
+      ],
+      "severity": "HIGH",
+      "required_clause": "Reference to independent auditor review of internal controls is required."
+    },
+    {
+      "id": "SOX-003",
+      "category": "Record Retention",
+      "title": "Financial record retention",
+      "description": "All financial records and audit workpapers must be retained for at least 7 years.",
+      "keywords": [
+        "record retention",
+        "7 years",
+        "financial records",
+        "workpapers"
+      ],
+      "severity": "HIGH",
+      "required_clause": "A 7-year financial record retention policy must be stated."
+    },
+    {
+      "id": "SOX-004",
+      "category": "Fraud Prevention",
+      "title": "Whistleblower protections",
+      "description": "Employees must be protected from retaliation when reporting suspected fraud.",
+      "keywords": [
+        "whistleblower",
+        "fraud",
+        "retaliation",
+        "reporting"
+      ],
+      "severity": "HIGH",
+      "required_clause": "Whistleblower protection policy must be documented."
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>auditiq — Compliance Audit Report</title>
+<style>
+  body  { font-family: Arial, sans-serif; margin: 30px; background: #f9fafb; color: #111; }
+  h1   { color: #1e3a5f; font-size: 2em; }
+  h2   { color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px; margin-top: 30px; }
+  .badge { display:inline-block; padding:6px 16px; border-radius:8px; color:#fff;
+            font-weight:bold; font-size:1.2em;
+            background:#dc2626; }
+  table  { border-collapse:collapse; width:100%; margin-bottom:20px;
+            background:#fff; border-radius:8px; overflow:hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  th     { background:#1e3a5f; color:#fff; padding:10px; text-align:left; }
+  td     { padding:10px; border-bottom:1px solid #e5e7eb; vertical-align:top; }
+  tr:hover { background:#f0f4ff; }
+  .meta  { color:#6b7280; font-size:0.9em; margin-bottom: 20px; }
+  .header-bar { background: linear-gradient(135deg, #1e3a5f, #2563eb);
+                 color: #fff; padding: 24px 30px; border-radius: 12px;
+                 margin-bottom: 24px; }
+</style>
+</head>
+<body>
+
+<div class="header-bar">
+  <h1 style="color:#fff;margin:0">🔍 auditiq</h1>
+  <p style="margin:4px 0 0 0;opacity:0.85">AI-Powered Compliance Audit Report</p>
+</div>
+
+<p class="meta">
+  📄 Document: <b>demo_contract.txt</b> &nbsp;|&nbsp;
+  🕐 Generated: 2026-06-10 05:27:55 &nbsp;|&nbsp;
+  🤖 Model: Qwen2.5-7B-Instruct on AMD ROCm MI300X &nbsp;|&nbsp;
+  📚 Frameworks: GDPR · SOX · HIPAA · PCI-DSS · Insurance
+</p>
+
+<h2>📊 Overall Compliance Score</h2>
+
+    <div style="background:#e5e7eb;border-radius:10px;height:24px;width:100%;margin:10px 0;">
+      <div style="background:#dc2626;width:0.0%;height:24px;border-radius:10px;
+                  display:flex;align-items:center;padding-left:10px;color:#fff;font-weight:bold;">
+        0.0%
+      </div>
+    </div>
+<p>Risk Level: <span class="badge">CRITICAL</span></p>
+
+<h2>🏛️ Score by Framework</h2>
+
+        <div style="margin:8px 0;">
+          <span style="font-weight:bold;display:inline-block;width:200px">GDPR</span>
+          <div style="display:inline-block;background:#e5e7eb;border-radius:6px;
+                      height:18px;width:300px;vertical-align:middle;">
+            <div style="background:#dc2626;width:0.0%;height:18px;border-radius:6px;
+                        display:inline-flex;align-items:center;padding-left:8px;
+                        color:#fff;font-size:0.8em;font-weight:bold;">0.0%</div>
+          </div>
+        </div>
+        <div style="margin:8px 0;">
+          <span style="font-weight:bold;display:inline-block;width:200px">SOX</span>
+          <div style="display:inline-block;background:#e5e7eb;border-radius:6px;
+                      height:18px;width:300px;vertical-align:middle;">
+            <div style="background:#dc2626;width:0.0%;height:18px;border-radius:6px;
+                        display:inline-flex;align-items:center;padding-left:8px;
+                        color:#fff;font-size:0.8em;font-weight:bold;">0.0%</div>
+          </div>
+        </div>
+
+<h2>📋 Status Summary</h2>
+
+        <div style="display:inline-block;background:#dc2626;color:#fff;border-radius:10px;
+                    padding:12px 24px;margin:6px;text-align:center;min-width:120px;">
+          <div style="font-size:1.8em">❌</div>
+          <div style="font-size:1.4em;font-weight:bold">3</div>
+          <div style="font-size:0.8em">NON COMPLIANT</div>
+        </div>
+
+
+    <h2>🛠️ Risk-Ranked Remediation Action Plan</h2>
+    <p style="color:#6b7280">Issues sorted by severity. Address CRITICAL items immediately.</p>
+    <table>
+      <tr>
+        <th>#</th><th>Rule</th><th>Framework</th><th>Severity</th>
+        <th>Status</th><th>Gap Identified</th><th>Recommended Action</th>
+      </tr>
+      
+        <tr>
+          <td style="text-align:center;font-weight:bold">1</td>
+          <td><b>GDPR-002</b></td>
+          <td>GDPR</td>
+          <td style="color:#ea580c;font-weight:bold">HIGH</td>
+          <td style="color:#ca8a04">NON_COMPLIANT</td>
+          <td style="font-size:0.85em;color:#dc2626">Missing a clear data retention period or deletion schedule.</td>
+          <td style="font-size:0.85em;color:#2563eb">Establish a clear data retention period and deletion schedule.</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;font-weight:bold">2</td>
+          <td><b>SOX-003</b></td>
+          <td>SOX</td>
+          <td style="color:#ea580c;font-weight:bold">HIGH</td>
+          <td style="color:#ca8a04">NON_COMPLIANT</td>
+          <td style="font-size:0.85em;color:#dc2626">Missing a 7-year financial record retention policy.</td>
+          <td style="font-size:0.85em;color:#2563eb">Extend the financial record retention period to 7 years.</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;font-weight:bold">3</td>
+          <td><b>GDPR-005</b></td>
+          <td>GDPR</td>
+          <td style="color:#ca8a04;font-weight:bold">MEDIUM</td>
+          <td style="color:#ca8a04">NON_COMPLIANT</td>
+          <td style="font-size:0.85em;color:#dc2626">Data processing agreements with all third parties are not referenced.</td>
+          <td style="font-size:0.85em;color:#2563eb">Ensure data processing agreements are in place with all third-party vendors.</td>
+        </tr>
+    </table>
+
+<h2>📄 Detailed Validation Results</h2>
+<table>
+<tr>
+  <th>Rule ID</th><th>Framework</th><th>Severity</th><th>Status</th>
+  <th>Confidence</th><th>Reasoning</th><th>Evidence</th><th>Gap</th><th>Recommendation</th>
+</tr>
+
+        <tr>
+          <td><b>GDPR-002</b></td>
+          <td>GDPR</td>
+          <td style="color:#ea580c;font-weight:bold">
+            HIGH</td>
+          <td style="color:#dc2626;font-weight:bold">❌ NON_COMPLIANT</td>
+          <td>
+            <div style="background:#e5e7eb;border-radius:4px;height:12px;width:80px;display:inline-block;vertical-align:middle;">
+              <div style="background:#dc2626;width:85%;height:12px;border-radius:4px;"></div>
+            </div>
+            <span style="margin-left:6px">85%</span>
+          </td>
+          <td style="font-size:0.85em;font-style:italic;color:#4b5563">The document states data is retained indefinitely without a deletion schedule.</td>
+          <td style="font-size:0.85em">Data is retained indefinitely for internal analytics and marketing purposes.</td>
+          <td style="font-size:0.85em;color:#dc2626">Missing a clear data retention period or deletion schedule.</td>
+          <td style="font-size:0.85em;color:#2563eb">Establish a clear data retention period and deletion schedule.</td>
+        </tr>
+        <tr>
+          <td><b>GDPR-005</b></td>
+          <td>GDPR</td>
+          <td style="color:#ca8a04;font-weight:bold">
+            MEDIUM</td>
+          <td style="color:#dc2626;font-weight:bold">❌ NON_COMPLIANT</td>
+          <td>
+            <div style="background:#e5e7eb;border-radius:4px;height:12px;width:80px;display:inline-block;vertical-align:middle;">
+              <div style="background:#dc2626;width:90%;height:12px;border-radius:4px;"></div>
+            </div>
+            <span style="margin-left:6px">90%</span>
+          </td>
+          <td style="font-size:0.85em;font-style:italic;color:#4b5563">Data processing agreements have not been established with all third-party vendors.</td>
+          <td style="font-size:0.85em">Customer data is shared with 12 external vendors. Data processing agreements have not been established with all vendors.</td>
+          <td style="font-size:0.85em;color:#dc2626">Data processing agreements with all third parties are not referenced.</td>
+          <td style="font-size:0.85em;color:#2563eb">Ensure data processing agreements are in place with all third-party vendors.</td>
+        </tr>
+        <tr>
+          <td><b>SOX-003</b></td>
+          <td>SOX</td>
+          <td style="color:#ea580c;font-weight:bold">
+            HIGH</td>
+          <td style="color:#dc2626;font-weight:bold">❌ NON_COMPLIANT</td>
+          <td>
+            <div style="background:#e5e7eb;border-radius:4px;height:12px;width:80px;display:inline-block;vertical-align:middle;">
+              <div style="background:#dc2626;width:80%;height:12px;border-radius:4px;"></div>
+            </div>
+            <span style="margin-left:6px">80%</span>
+          </td>
+          <td style="font-size:0.85em;font-style:italic;color:#4b5563">Financial records are only retained for 3 years, not the required 7 years.</td>
+          <td style="font-size:0.85em">Financial records are retained for 3 years then destroyed.</td>
+          <td style="font-size:0.85em;color:#dc2626">Missing a 7-year financial record retention policy.</td>
+          <td style="font-size:0.85em;color:#2563eb">Extend the financial record retention period to 7 years.</td>
+        </tr>
+</table>
+
+<p class="meta" style="margin-top:30px;text-align:center">
+  Generated by <b>auditiq</b> — TCS & AMD AI Hackathon 2026 &nbsp;|&nbsp;
+  Powered by AMD Instinct MI300X GPU
+</p>
+</body>
+</html>

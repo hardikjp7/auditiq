@@ -1,0 +1,281 @@
+{
+  "report_meta": {
+    "document": "globalfintech_compliance_agreement.pdf",
+    "generated": "2026-06-13T05:29:26.490795",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "embeddings": "BAAI/bge-small-en-v1.5",
+    "frameworks": [
+      "GDPR",
+      "SOX",
+      "HIPAA",
+      "PCI_DSS",
+      "Insurance_Compliance"
+    ]
+  },
+  "score_summary": {
+    "overall_score": 75.0,
+    "risk_level": "MEDIUM",
+    "framework_scores": {
+      "GDPR": 75.0,
+      "SOX": 40.0,
+      "HIPAA": 57.1,
+      "PCI_DSS": 100.0,
+      "Insurance_Compliance": 100.0
+    },
+    "status_counts": {
+      "PARTIAL": 3,
+      "COMPLIANT": 8,
+      "NON_COMPLIANT": 2
+    },
+    "total_rules": 13,
+    "issues": [
+      {
+        "rule_id": "GDPR-002",
+        "framework": "GDPR",
+        "severity": "HIGH",
+        "status": "PARTIAL",
+        "gap": "A formal, documented data retention schedule covering all data categories is missing.",
+        "recommendation": "Develop and approve a formal data retention schedule for all data categories."
+      },
+      {
+        "rule_id": "GDPR-005",
+        "framework": "GDPR",
+        "severity": "MEDIUM",
+        "status": "PARTIAL",
+        "gap": "Eight third-party processors do not yet have GDPR-compliant Data Processing Agreements in place.",
+        "recommendation": "Ensure all third-party processors sign GDPR-compliant Data Processing Agreements by Q2 2026."
+      },
+      {
+        "rule_id": "SOX-001",
+        "framework": "SOX",
+        "severity": "CRITICAL",
+        "status": "NON_COMPLIANT",
+        "gap": "The ICFR framework, including control objectives, control activities, risk assessments, and monitoring activities, is not fully documented.",
+        "recommendation": "Complete the ICFR framework documentation by Q3 2026."
+      },
+      {
+        "rule_id": "HIPAA-004",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "PARTIAL",
+        "gap": "Audit logging is not in place for three legacy occupational health record systems.",
+        "recommendation": "Implement HIPAA-compliant audit logging for the three legacy occupational health record systems."
+      },
+      {
+        "rule_id": "HIPAA-005",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "BAAs are not in place with two recently onboarded employee assistance programme providers.",
+        "recommendation": "Execute signed BAAs with the two recently onboarded employee assistance programme providers."
+      }
+    ],
+    "critical_issues": [
+      {
+        "rule_id": "SOX-001",
+        "framework": "SOX",
+        "severity": "CRITICAL",
+        "status": "NON_COMPLIANT",
+        "gap": "The ICFR framework, including control objectives, control activities, risk assessments, and monitoring activities, is not fully documented.",
+        "recommendation": "Complete the ICFR framework documentation by Q3 2026."
+      }
+    ],
+    "high_issues": [
+      {
+        "rule_id": "GDPR-002",
+        "framework": "GDPR",
+        "severity": "HIGH",
+        "status": "PARTIAL",
+        "gap": "A formal, documented data retention schedule covering all data categories is missing.",
+        "recommendation": "Develop and approve a formal data retention schedule for all data categories."
+      },
+      {
+        "rule_id": "HIPAA-004",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "PARTIAL",
+        "gap": "Audit logging is not in place for three legacy occupational health record systems.",
+        "recommendation": "Implement HIPAA-compliant audit logging for the three legacy occupational health record systems."
+      },
+      {
+        "rule_id": "HIPAA-005",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "BAAs are not in place with two recently onboarded employee assistance programme providers.",
+        "recommendation": "Execute signed BAAs with the two recently onboarded employee assistance programme providers."
+      }
+    ]
+  },
+  "validations": [
+    {
+      "rule_id": "GDPR-002",
+      "framework": "GDPR",
+      "severity": "HIGH",
+      "status": "PARTIAL",
+      "confidence_score": 70,
+      "reasoning": "The document mentions interim retention periods but lacks a formal, approved data retention schedule.",
+      "evidence": "However, the Company acknowledges that a comprehensive, documented data retention schedule covering all data categories has not yet been formally approved by the Data Protection Officer.",
+      "gap": "A formal, documented data retention schedule covering all data categories is missing.",
+      "recommendation": "Develop and approve a formal data retention schedule for all data categories.",
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_0",
+      "chunk_text_preview": "CONFIDENTIAL - INTERNAL USE ONLY GlobalFinTech Corp. | Legal & Compliance Division ENTERPRISE DATA GOVERNANCE & FINANCIAL COMPLIANCE AGREEMENT Master "
+    },
+    {
+      "rule_id": "GDPR-005",
+      "framework": "GDPR",
+      "severity": "MEDIUM",
+      "status": "PARTIAL",
+      "confidence_score": 79,
+      "reasoning": "While most third-party agreements are compliant, some are not yet in place.",
+      "evidence": "\"Data Processing Agreements (DPAs) compliant with Article 28 of GDPR have been executed with 39 of these processors. Eight processors, primarily recent onboarding during Q4 2025, do not yet have executed DPAs in place.\"",
+      "gap": "Eight third-party processors do not yet have GDPR-compliant Data Processing Agreements in place.",
+      "recommendation": "Ensure all third-party processors sign GDPR-compliant Data Processing Agreements by Q2 2026.",
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_1",
+      "chunk_text_preview": "breach as defined under Article 4(12) of GDPR, the Company will assess the risk to data subjects and notify the relevant supervisory authority (ICO in"
+    },
+    {
+      "rule_id": "SOX-003",
+      "framework": "SOX",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 91,
+      "reasoning": "The document explicitly states a 7-year retention period for financial records.",
+      "evidence": "\"All financial records, general ledger entries, accounts payable and receivable records, bank reconciliations, audit workpapers, and supporting documentation are retained for a minimum period of 7 years\"",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_2",
+      "chunk_text_preview": "noted in section 2.1, the auditor attestation on the effectiveness of internal controls is expected to include qualifications. The previous year's aud"
+    },
+    {
+      "rule_id": "GDPR-004",
+      "framework": "GDPR",
+      "severity": "CRITICAL",
+      "status": "COMPLIANT",
+      "confidence_score": 91,
+      "reasoning": "The document explicitly states the 72-hour reporting timeline.",
+      "evidence": "\"the Company will assess the risk to data subjects and notify the relevant supervisory authority (ICO in the UK) within 72 hours\"",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_1",
+      "chunk_text_preview": "breach as defined under Article 4(12) of GDPR, the Company will assess the risk to data subjects and notify the relevant supervisory authority (ICO in"
+    },
+    {
+      "rule_id": "SOX-001",
+      "framework": "SOX",
+      "severity": "CRITICAL",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 70,
+      "reasoning": "The ICFR framework is not fully documented, indicating a material weakness.",
+      "evidence": "\"Management acknowledges that formally documented Internal Controls over Financial Reporting (ICFR) as required under Section 404 of the Sarbanes-Oxley Act have not been comprehensively documented for the current fiscal year\"",
+      "gap": "The ICFR framework, including control objectives, control activities, risk assessments, and monitoring activities, is not fully documented.",
+      "recommendation": "Complete the ICFR framework documentation by Q3 2026.",
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_1",
+      "chunk_text_preview": "breach as defined under Article 4(12) of GDPR, the Company will assess the risk to data subjects and notify the relevant supervisory authority (ICO in"
+    },
+    {
+      "rule_id": "HIPAA-004",
+      "framework": "HIPAA",
+      "severity": "HIGH",
+      "status": "PARTIAL",
+      "confidence_score": 73,
+      "reasoning": "Audit logging is partially implemented but not fully for all systems containing PHI.",
+      "evidence": "Audit logs are in place for the primary Workday HR system, however three legacy occupational health record systems acquired through the 2023 merger with MedCorp Solutions do not currently generate HIPAA-compliant audit logs.",
+      "gap": "Audit logging is not in place for three legacy occupational health record systems.",
+      "recommendation": "Implement HIPAA-compliant audit logging for the three legacy occupational health record systems.",
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_3",
+      "chunk_text_preview": "(Proofpoint Encryption). USB and removable media containing PHI are prohibited under the Company's acceptable use policy. Annual encryption key rotati"
+    },
+    {
+      "rule_id": "HIPAA-003",
+      "framework": "HIPAA",
+      "severity": "CRITICAL",
+      "status": "COMPLIANT",
+      "confidence_score": 88,
+      "reasoning": "The document specifies a 60-day breach notification procedure.",
+      "evidence": "\"In the event of a breach of unsecured PHI, the Company will notify affected individuals without unreasonable delay and within 60 days\"",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_2",
+      "chunk_text_preview": "noted in section 2.1, the auditor attestation on the effectiveness of internal controls is expected to include qualifications. The previous year's aud"
+    },
+    {
+      "rule_id": "HIPAA-005",
+      "framework": "HIPAA",
+      "severity": "HIGH",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 65,
+      "reasoning": "Business Associate Agreements are not in place with two recently onboarded employee assistance programme providers.",
+      "evidence": "The Company maintains a register of all Business Associates updated quarterly. However, BAAs have not been executed with two recently onboarded employee assistance programme providers who may have access to PHI.",
+      "gap": "BAAs are not in place with two recently onboarded employee assistance programme providers.",
+      "recommendation": "Execute signed BAAs with the two recently onboarded employee assistance programme providers.",
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_3",
+      "chunk_text_preview": "(Proofpoint Encryption). USB and removable media containing PHI are prohibited under the Company's acceptable use policy. Annual encryption key rotati"
+    },
+    {
+      "rule_id": "PCI-003",
+      "framework": "PCI_DSS",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 86,
+      "reasoning": "The document explicitly mentions the use of a firewall and network segmentation.",
+      "evidence": "The cardholder data environment is segregated from the corporate network and public internet using a dedicated next-generation firewall (Palo Alto Networks PA-5220) with application-aware filtering. Network segmentation is enforced through VLANs and micro-segmentation policies.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_4",
+      "chunk_text_preview": "is restricted exclusively to staff whose job roles require such access, in accordance with the principle of least privilege. Currently, access rights "
+    },
+    {
+      "rule_id": "PCI-002",
+      "framework": "PCI_DSS",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 86,
+      "reasoning": "The document explicitly states that access is restricted based on job roles and the principle of least privilege.",
+      "evidence": "Access rights to payment processing systems have not been formally reviewed following the organisational restructuring in Q1 2026. Twelve individuals retain access rights to payment system administration consoles that may no longer be required given their new roles.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_4",
+      "chunk_text_preview": "is restricted exclusively to staff whose job roles require such access, in accordance with the principle of least privilege. Currently, access rights "
+    },
+    {
+      "rule_id": "PCI-004",
+      "framework": "PCI_DSS",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 84,
+      "reasoning": "The document describes regular vulnerability scans and penetration testing procedures.",
+      "evidence": "The Company conducts quarterly internal and external vulnerability scans of all systems in scope for PCI-DSS using Qualys Enterprise. Critical and high vulnerabilities are remediated within 30 and 60 days respectively. Annual penetration testing is conducted by an approved scanning vendor (ASV), most recently completed March 2026 with no critical findings.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_4",
+      "chunk_text_preview": "is restricted exclusively to staff whose job roles require such access, in accordance with the principle of least privilege. Currently, access rights "
+    },
+    {
+      "rule_id": "INS-003",
+      "framework": "Insurance_Compliance",
+      "severity": "CRITICAL",
+      "status": "COMPLIANT",
+      "confidence_score": 87,
+      "reasoning": "The document explicitly mentions AML and KYC procedures.",
+      "evidence": "\"The Company operates a risk-based AML programme compliant with the Money Laundering, Terrorist Financing and Transfer of Funds Regulations 2017.\"",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_5",
+      "chunk_text_preview": "the 30-day resolution target. The claims backlog has increased due to a 34% volume increase in Q1 2026 and resourcing constraints. An emergency claims"
+    },
+    {
+      "rule_id": "INS-004",
+      "framework": "Insurance_Compliance",
+      "severity": "CRITICAL",
+      "status": "COMPLIANT",
+      "confidence_score": 86,
+      "reasoning": "The document explicitly states the company's adherence to Solvency II Directive and maintains significant SCR and MCR ratios.",
+      "evidence": "\"The Solvency Capital Requirement (SCR) coverage ratio as at 31 December 2025 was 187%, significantly above the 100% minimum requirement. The Minimum Capital Requirement (MCR) coverage ratio was 312%.\"",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "globalfintech_compliance_agreement.pdf_chunk_5",
+      "chunk_text_preview": "the 30-day resolution target. The claims backlog has increased due to a 34% volume increase in Q1 2026 and resourcing constraints. An emergency claims"
+    }
+  ]
+}

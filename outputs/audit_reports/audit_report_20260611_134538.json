@@ -1,0 +1,315 @@
+{
+  "report_meta": {
+    "document": "auditiq_upload.pdf",
+    "generated": "2026-06-11T13:45:38.459385",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "embeddings": "BAAI/bge-small-en-v1.5",
+    "frameworks": [
+      "GDPR",
+      "SOX",
+      "HIPAA",
+      "PCI_DSS",
+      "Insurance_Compliance"
+    ]
+  },
+  "score_summary": {
+    "overall_score": 73.5,
+    "risk_level": "MEDIUM",
+    "framework_scores": {
+      "GDPR": 33.3,
+      "SOX": 50.0,
+      "HIPAA": 75.0,
+      "PCI_DSS": 100.0,
+      "Insurance_Compliance": 100.0
+    },
+    "status_counts": {
+      "PARTIAL": 2,
+      "COMPLIANT": 10,
+      "NON_COMPLIANT": 3
+    },
+    "total_rules": 15,
+    "issues": [
+      {
+        "rule_id": "GDPR-002",
+        "framework": "GDPR",
+        "severity": "HIGH",
+        "status": "PARTIAL",
+        "gap": "A formal, documented data retention schedule covering all data categories is missing.",
+        "recommendation": "Develop and approve a formal data retention schedule for all data categories."
+      },
+      {
+        "rule_id": "SOX-003",
+        "framework": "SOX",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "A 7-year financial record retention policy must be explicitly stated.",
+        "recommendation": "Explicitly state a 7-year financial record retention policy in the document."
+      },
+      {
+        "rule_id": "HIPAA-004",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "PARTIAL",
+        "gap": "Audit logging is not in place for all systems containing PHI.",
+        "recommendation": "Implement HIPAA-compliant audit logging for all systems containing PHI."
+      },
+      {
+        "rule_id": "HIPAA-005",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "BAAs are not in place with two recently onboarded vendors.",
+        "recommendation": "Execute signed BAAs with the two recently onboarded vendors within 30 days."
+      },
+      {
+        "rule_id": "GDPR-004",
+        "framework": "GDPR",
+        "severity": "CRITICAL",
+        "status": "NON_COMPLIANT",
+        "gap": "A breach notification procedure with a 72-hour reporting timeline is missing.",
+        "recommendation": "Include a breach notification procedure that specifies the 72-hour reporting timeline."
+      }
+    ],
+    "critical_issues": [
+      {
+        "rule_id": "GDPR-004",
+        "framework": "GDPR",
+        "severity": "CRITICAL",
+        "status": "NON_COMPLIANT",
+        "gap": "A breach notification procedure with a 72-hour reporting timeline is missing.",
+        "recommendation": "Include a breach notification procedure that specifies the 72-hour reporting timeline."
+      }
+    ],
+    "high_issues": [
+      {
+        "rule_id": "GDPR-002",
+        "framework": "GDPR",
+        "severity": "HIGH",
+        "status": "PARTIAL",
+        "gap": "A formal, documented data retention schedule covering all data categories is missing.",
+        "recommendation": "Develop and approve a formal data retention schedule for all data categories."
+      },
+      {
+        "rule_id": "SOX-003",
+        "framework": "SOX",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "A 7-year financial record retention policy must be explicitly stated.",
+        "recommendation": "Explicitly state a 7-year financial record retention policy in the document."
+      },
+      {
+        "rule_id": "HIPAA-004",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "PARTIAL",
+        "gap": "Audit logging is not in place for all systems containing PHI.",
+        "recommendation": "Implement HIPAA-compliant audit logging for all systems containing PHI."
+      },
+      {
+        "rule_id": "HIPAA-005",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "BAAs are not in place with two recently onboarded vendors.",
+        "recommendation": "Execute signed BAAs with the two recently onboarded vendors within 30 days."
+      }
+    ]
+  },
+  "validations": [
+    {
+      "rule_id": "GDPR-002",
+      "framework": "GDPR",
+      "severity": "HIGH",
+      "status": "PARTIAL",
+      "confidence_score": 75,
+      "reasoning": "The document mentions interim retention periods but lacks a formal, approved data retention schedule.",
+      "evidence": "However, the Company acknowledges that a comprehensive, documented data retention schedule covering all data categories has not yet been formally approved by the Data Protection Officer.",
+      "gap": "A formal, documented data retention schedule covering all data categories is missing.",
+      "recommendation": "Develop and approve a formal data retention schedule for all data categories.",
+      "chunk_id": "auditiq_upload.pdf_chunk_0",
+      "chunk_text_preview": "CONFIDENTIAL - INTERNAL USE ONLY GlobalFinTech Corp. | Legal & Compliance Division ENTERPRISE DATA GOVERNANCE & FINANCIAL COMPLIANCE AGREEMENT Master "
+    },
+    {
+      "rule_id": "GDPR-005",
+      "framework": "GDPR",
+      "severity": "MEDIUM",
+      "status": "COMPLIANT",
+      "confidence_score": 100,
+      "reasoning": "The document references the existence of a compliance addendum which implies a data processing agreement is in place.",
+      "evidence": "This agreement covers compliance obligations under GDPR, SOX, HIPAA, PCI-DSS, and Insurance/Financial Services regulations applicable to GlobalFinTech Corp.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_0",
+      "chunk_text_preview": "CONFIDENTIAL - INTERNAL USE ONLY GlobalFinTech Corp. | Legal & Compliance Division ENTERPRISE DATA GOVERNANCE & FINANCIAL COMPLIANCE AGREEMENT Master "
+    },
+    {
+      "rule_id": "SOX-003",
+      "framework": "SOX",
+      "severity": "HIGH",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 80,
+      "reasoning": "The document does not explicitly state a 7-year financial record retention policy.",
+      "evidence": "Customer transaction records are retained for 7 years to satisfy financial regulatory requirements.",
+      "gap": "A 7-year financial record retention policy must be explicitly stated.",
+      "recommendation": "Explicitly state a 7-year financial record retention policy in the document.",
+      "chunk_id": "auditiq_upload.pdf_chunk_0",
+      "chunk_text_preview": "CONFIDENTIAL - INTERNAL USE ONLY GlobalFinTech Corp. | Legal & Compliance Division ENTERPRISE DATA GOVERNANCE & FINANCIAL COMPLIANCE AGREEMENT Master "
+    },
+    {
+      "rule_id": "SOX-003",
+      "framework": "SOX",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 100,
+      "reasoning": "The document explicitly states a 7-year retention period for financial records.",
+      "evidence": "All financial records, general ledger entries, accounts payable and receivable records, bank reconciliations, audit workpapers, and supporting documentation are retained for a minimum period of 7 years in accordance with Section 802 of the Sarbanes-Oxley Act and applicable HMRC requirements.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_2",
+      "chunk_text_preview": "noted in section 2.1, the auditor attestation on the effectiveness of internal controls is expected to include qualifications. The previous year's aud"
+    },
+    {
+      "rule_id": "HIPAA-004",
+      "framework": "HIPAA",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 100,
+      "reasoning": "The document mentions logging and monitoring of PHI access.",
+      "evidence": "All PHI access is logged and monitored by the Information Security team.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_2",
+      "chunk_text_preview": "noted in section 2.1, the auditor attestation on the effectiveness of internal controls is expected to include qualifications. The previous year's aud"
+    },
+    {
+      "rule_id": "HIPAA-003",
+      "framework": "HIPAA",
+      "severity": "CRITICAL",
+      "status": "COMPLIANT",
+      "confidence_score": 100,
+      "reasoning": "The document specifies the 60-day notification requirement for PHI breaches.",
+      "evidence": "In the event of a breach of unsecured PHI, the Company will notify affected individuals without unreasonable delay and within 60 days",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_2",
+      "chunk_text_preview": "noted in section 2.1, the auditor attestation on the effectiveness of internal controls is expected to include qualifications. The previous year's aud"
+    },
+    {
+      "rule_id": "HIPAA-003",
+      "framework": "HIPAA",
+      "severity": "CRITICAL",
+      "status": "COMPLIANT",
+      "confidence_score": 100,
+      "reasoning": "The document explicitly states the 60-day notification procedure.",
+      "evidence": "Notification to the Secretary of HHS will be provided simultaneously. For breaches affecting 500 or more individuals in a state, prominent media notice will be provided.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_3",
+      "chunk_text_preview": "(Proofpoint Encryption). USB and removable media containing PHI are prohibited under the Company's acceptable use policy. Annual encryption key rotati"
+    },
+    {
+      "rule_id": "HIPAA-004",
+      "framework": "HIPAA",
+      "severity": "HIGH",
+      "status": "PARTIAL",
+      "confidence_score": 85,
+      "reasoning": "Audit logging is partially compliant as it is only in place for one system.",
+      "evidence": "Audit logs are in place for the primary Workday HR system, however three legacy occupational health record systems acquired through the 2023 merger with MedCorp Solutions do not currently generate HIPAA-compliant audit logs.",
+      "gap": "Audit logging is not in place for all systems containing PHI.",
+      "recommendation": "Implement HIPAA-compliant audit logging for all systems containing PHI.",
+      "chunk_id": "auditiq_upload.pdf_chunk_3",
+      "chunk_text_preview": "(Proofpoint Encryption). USB and removable media containing PHI are prohibited under the Company's acceptable use policy. Annual encryption key rotati"
+    },
+    {
+      "rule_id": "HIPAA-005",
+      "framework": "HIPAA",
+      "severity": "HIGH",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 70,
+      "reasoning": "Not all Business Associate Agreements are in place.",
+      "evidence": "Business Associate Agreements have not been executed with two recently onboarded employee assistance programme providers who may have access to PHI.",
+      "gap": "BAAs are not in place with two recently onboarded vendors.",
+      "recommendation": "Execute signed BAAs with the two recently onboarded vendors within 30 days.",
+      "chunk_id": "auditiq_upload.pdf_chunk_3",
+      "chunk_text_preview": "(Proofpoint Encryption). USB and removable media containing PHI are prohibited under the Company's acceptable use policy. Annual encryption key rotati"
+    },
+    {
+      "rule_id": "PCI-003",
+      "framework": "PCI_DSS",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 95,
+      "reasoning": "The document provides sufficient evidence of firewall and network segmentation practices.",
+      "evidence": "The cardholder data environment is segregated from the corporate network and public internet using a dedicated next-generation firewall (Palo Alto Networks PA-5220) with application-aware filtering. Network segmentation is enforced through VLANs and micro-segmentation policies.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_4",
+      "chunk_text_preview": "is restricted exclusively to staff whose job roles require such access, in accordance with the principle of least privilege. Currently, access rights "
+    },
+    {
+      "rule_id": "PCI-002",
+      "framework": "PCI_DSS",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 98,
+      "reasoning": "Access to payment system administration consoles is restricted to staff whose job roles require such access.",
+      "evidence": "is restricted exclusively to staff whose job roles require such access, in accordance with the principle of least privilege.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_4",
+      "chunk_text_preview": "is restricted exclusively to staff whose job roles require such access, in accordance with the principle of least privilege. Currently, access rights "
+    },
+    {
+      "rule_id": "PCI-004",
+      "framework": "PCI_DSS",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 97,
+      "reasoning": "The company conducts regular vulnerability scans and penetration testing as per the document.",
+      "evidence": "The Company conducts quarterly internal and external vulnerability scans of all systems in scope for PCI-DSS using Qualys Enterprise. Critical and high vulnerabilities are remediated within 30 and 60 days respectively. Annual penetration testing is conducted by an approved scanning vendor (ASV), most recently completed March 2026 with no critical findings.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_4",
+      "chunk_text_preview": "is restricted exclusively to staff whose job roles require such access, in accordance with the principle of least privilege. Currently, access rights "
+    },
+    {
+      "rule_id": "INS-003",
+      "framework": "Insurance_Compliance",
+      "severity": "CRITICAL",
+      "status": "COMPLIANT",
+      "confidence_score": 100,
+      "reasoning": "The document explicitly mentions AML and KYC procedures.",
+      "evidence": "5.3 Anti-Money Laundering and KYC Compliance The Company operates a risk-based AML programme compliant with the Money Laundering, Terrorist Financing and Transfer of Funds Regulations 2017.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_5",
+      "chunk_text_preview": "the 30-day resolution target. The claims backlog has increased due to a 34% volume increase in Q1 2026 and resourcing constraints. An emergency claims"
+    },
+    {
+      "rule_id": "INS-004",
+      "framework": "Insurance_Compliance",
+      "severity": "CRITICAL",
+      "status": "COMPLIANT",
+      "confidence_score": 100,
+      "reasoning": "The document states the company's adherence to Solvency II Directive and provides specific coverage ratios.",
+      "evidence": "The Solvency Capital Requirement (SCR) coverage ratio as at 31 December 2025 was 187%, significantly above the 100% minimum requirement. The Minimum Capital Requirement (MCR) coverage ratio was 312%.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_5",
+      "chunk_text_preview": "the 30-day resolution target. The claims backlog has increased due to a 34% volume increase in Q1 2026 and resourcing constraints. An emergency claims"
+    },
+    {
+      "rule_id": "GDPR-004",
+      "framework": "GDPR",
+      "severity": "CRITICAL",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 85,
+      "reasoning": "The document does not mention a breach notification procedure with a 72-hour reporting timeline.",
+      "evidence": "No explicit mention of a breach notification procedure with a 72-hour reporting timeline.",
+      "gap": "A breach notification procedure with a 72-hour reporting timeline is missing.",
+      "recommendation": "Include a breach notification procedure that specifies the 72-hour reporting timeline.",
+      "chunk_id": "auditiq_upload.pdf_chunk_5",
+      "chunk_text_preview": "the 30-day resolution target. The claims backlog has increased due to a 34% volume increase in Q1 2026 and resourcing constraints. An emergency claims"
+    }
+  ]
+}

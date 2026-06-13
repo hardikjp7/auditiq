@@ -1,0 +1,12 @@
+{
+  "day": 2,
+  "date": "2026-06-09T15:39:36.986396",
+  "model_llm": "Qwen/Qwen2.5-7B-Instruct",
+  "model_embed": "BAAI/bge-small-en-v1.5",
+  "total_rules": 13,
+  "faiss_index_size": 13,
+  "sample_tokens": 592,
+  "avg_latency_sec": 6.57,
+  "chunks_tested": 1,
+  "rules_checked": 3
+}

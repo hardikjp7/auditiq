@@ -1,0 +1,236 @@
+{
+  "report_meta": {
+    "document": "auditiq_upload.pdf",
+    "generated": "2026-06-12T15:22:58.263054",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "embeddings": "BAAI/bge-small-en-v1.5",
+    "frameworks": [
+      "GDPR",
+      "SOX",
+      "HIPAA",
+      "PCI_DSS",
+      "Insurance_Compliance"
+    ]
+  },
+  "score_summary": {
+    "overall_score": 80.6,
+    "risk_level": "LOW",
+    "framework_scores": {
+      "GDPR": 58.3,
+      "SOX": 100.0,
+      "HIPAA": 80.0,
+      "PCI_DSS": 100.0,
+      "Insurance_Compliance": 100.0
+    },
+    "status_counts": {
+      "NON_COMPLIANT": 1,
+      "COMPLIANT": 5,
+      "PARTIAL": 2,
+      "NOT_APPLICABLE": 2
+    },
+    "total_rules": 10,
+    "issues": [
+      {
+        "rule_id": "GDPR-002",
+        "framework": "GDPR",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "A formal, documented data retention schedule covering all data categories is missing.",
+        "recommendation": "Develop and approve a formal data retention schedule for all data categories."
+      },
+      {
+        "rule_id": "GDPR-005",
+        "framework": "GDPR",
+        "severity": "MEDIUM",
+        "status": "PARTIAL",
+        "gap": "DPAs are not in place for 8 third-party processors.",
+        "recommendation": "Complete the execution of DPAs with the remaining 8 third-party processors by Q2 2026."
+      },
+      {
+        "rule_id": "HIPAA-004",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "PARTIAL",
+        "gap": "Audit logging is not in place for all systems containing PHI.",
+        "recommendation": "Implement HIPAA-compliant audit logging for all systems containing PHI."
+      }
+    ],
+    "critical_issues": [],
+    "high_issues": [
+      {
+        "rule_id": "GDPR-002",
+        "framework": "GDPR",
+        "severity": "HIGH",
+        "status": "NON_COMPLIANT",
+        "gap": "A formal, documented data retention schedule covering all data categories is missing.",
+        "recommendation": "Develop and approve a formal data retention schedule for all data categories."
+      },
+      {
+        "rule_id": "HIPAA-004",
+        "framework": "HIPAA",
+        "severity": "HIGH",
+        "status": "PARTIAL",
+        "gap": "Audit logging is not in place for all systems containing PHI.",
+        "recommendation": "Implement HIPAA-compliant audit logging for all systems containing PHI."
+      }
+    ]
+  },
+  "validations": [
+    {
+      "rule_id": "GDPR-002",
+      "framework": "GDPR",
+      "severity": "HIGH",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 79,
+      "reasoning": "The document lacks a formal, approved data retention schedule.",
+      "evidence": "However, the Company acknowledges that a comprehensive, documented data retention schedule covering all data categories has not yet been formally approved by the Data Protection Officer.",
+      "gap": "A formal, documented data retention schedule covering all data categories is missing.",
+      "recommendation": "Develop and approve a formal data retention schedule for all data categories.",
+      "chunk_id": "auditiq_upload.pdf_chunk_0",
+      "chunk_text_preview": "auditiq iq AI-Powered Compliance Audit Report Qwen2.5-7B-Instruct + RAG + FAISS + AMD ROCm MI300X Document: auditiq_upload.pdf Generated: 12 June 2026"
+    },
+    {
+      "rule_id": "GDPR-004",
+      "framework": "GDPR",
+      "severity": "CRITICAL",
+      "status": "NON_COMPLIANT",
+      "confidence_score": 28,
+      "reasoning": "There is no mention of a breach notification procedure with a 72-hour reporting timeline.",
+      "evidence": "No relevant evidence found in the provided document.",
+      "gap": "A breach notification procedure with 72-hour reporting timeline is missing.",
+      "recommendation": "Implement a breach notification procedure that includes a 72-hour reporting timeline to the supervisory authority.",
+      "chunk_id": "auditiq_upload.pdf_chunk_0",
+      "chunk_text_preview": "auditiq iq AI-Powered Compliance Audit Report Qwen2.5-7B-Instruct + RAG + FAISS + AMD ROCm MI300X Document: auditiq_upload.pdf Generated: 12 June 2026"
+    },
+    {
+      "rule_id": "GDPR-005",
+      "framework": "GDPR",
+      "severity": "MEDIUM",
+      "status": "PARTIAL",
+      "confidence_score": 79,
+      "reasoning": "While most third-party data processors have agreements, some are still lacking.",
+      "evidence": "Data Processing Agreements (DPAs) compliant with Article 28 of GDPR have been executed with 39 of these processors. Eight processors, primarily recent onboarding during Q4 2025, do not yet have executed DPAs in place.",
+      "gap": "DPAs are not in place for 8 third-party processors.",
+      "recommendation": "Complete the execution of DPAs with the remaining 8 third-party processors by Q2 2026.",
+      "chunk_id": "auditiq_upload.pdf_chunk_0",
+      "chunk_text_preview": "auditiq iq AI-Powered Compliance Audit Report Qwen2.5-7B-Instruct + RAG + FAISS + AMD ROCm MI300X Document: auditiq_upload.pdf Generated: 12 June 2026"
+    },
+    {
+      "rule_id": "SOX-003",
+      "framework": "SOX",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 92,
+      "reasoning": "The document explicitly states a 7-year financial record retention policy.",
+      "evidence": "All financial records, general ledger entries, accounts payable and receivable records, bank reconciliations, audit workpapers, and supporting documentation are retained for a minimum period of 7 years in accordance with...",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_1",
+      "chunk_text_preview": "state a 7-year financial record retention policy in the document. SOX-001 FAIL CRI 70% ICFR documentation is not fully completed. Evidence: Management"
+    },
+    {
+      "rule_id": "HIPAA-004",
+      "framework": "HIPAA",
+      "severity": "HIGH",
+      "status": "PARTIAL",
+      "confidence_score": 81,
+      "reasoning": "Audit logging is only in place for one system, not all systems containing PHI.",
+      "evidence": "Audit logs are in place for the primary Workday HR system, however three legacy occupational health record systems acquired through the 2023 merger with MedCorp Solutions do not currently generate HIPAA-compliant audit logs...",
+      "gap": "Audit logging is not in place for all systems containing PHI.",
+      "recommendation": "Implement HIPAA-compliant audit logging for all systems containing PHI.",
+      "chunk_id": "auditiq_upload.pdf_chunk_1",
+      "chunk_text_preview": "state a 7-year financial record retention policy in the document. SOX-001 FAIL CRI 70% ICFR documentation is not fully completed. Evidence: Management"
+    },
+    {
+      "rule_id": "HIPAA-003",
+      "framework": "HIPAA",
+      "severity": "CRITICAL",
+      "status": "COMPLIANT",
+      "confidence_score": 90,
+      "reasoning": "The document specifies the 60-day notification requirement and procedure.",
+      "evidence": "In the event of a breach of unsecured PHI, the Company will notify affected individuals without unreasonable delay and within 60 days. Notification to the Secretary of HHS will be provided simultaneously. For breaches affecting 500 or more individuals in a state, prominent media notice will be provided.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_1",
+      "chunk_text_preview": "state a 7-year financial record retention policy in the document. SOX-001 FAIL CRI 70% ICFR documentation is not fully completed. Evidence: Management"
+    },
+    {
+      "rule_id": "PCI-002",
+      "framework": "PCI_DSS",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 90,
+      "reasoning": "The document explicitly states that access is restricted to staff whose job roles require such access.",
+      "evidence": "Evidence: is restricted exclusively to staff whose job roles require such access, in accordance with the principle of least privilege.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_2",
+      "chunk_text_preview": "those whose job roles require it, aligning with the principle of least privilege. Evidence: is restricted exclusively to staff whose job roles require"
+    },
+    {
+      "rule_id": "INS-003",
+      "framework": "Insurance_Compliance",
+      "severity": "CRITICAL",
+      "status": "COMPLIANT",
+      "confidence_score": 90,
+      "reasoning": "The document explicitly mentions AML and KYC procedures.",
+      "evidence": "Evidence: 5.3 Anti-Money Laundering and KYC Compliance The Company operates a risk-based AML programme compliant with the Money Laundering, Terrorist Financing and Transfer of Funds Regulations 2017.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_2",
+      "chunk_text_preview": "those whose job roles require it, aligning with the principle of least privilege. Evidence: is restricted exclusively to staff whose job roles require"
+    },
+    {
+      "rule_id": "GDPR-004",
+      "framework": "GDPR",
+      "severity": "CRITICAL",
+      "status": "COMPLIANT",
+      "confidence_score": 88,
+      "reasoning": "The document explicitly states a 72-hour reporting timeline for breach notifications.",
+      "evidence": "Gap: A breach notification procedure with 72-hour reporting timeline is missing. Action: Implement a breach notification procedure that includes a 72-hour reporting timeline to the supervisory authority.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_2",
+      "chunk_text_preview": "those whose job roles require it, aligning with the principle of least privilege. Evidence: is restricted exclusively to staff whose job roles require"
+    },
+    {
+      "rule_id": "INS-003",
+      "framework": "Insurance_Compliance",
+      "severity": "CRITICAL",
+      "status": "NOT_APPLICABLE",
+      "confidence_score": 26,
+      "reasoning": "No evidence of AML and KYC procedures being documented.",
+      "evidence": null,
+      "gap": "AML and KYC procedures must be documented.",
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_3",
+      "chunk_text_preview": "About auditiq AI-Powered Compliance Audit Validator | TCS & AMD AI Hackathon 2026 | Track 1 - Agents | Built by @hardikjp7 | github.com/hardikjp7 Page"
+    },
+    {
+      "rule_id": "PCI-003",
+      "framework": "PCI_DSS",
+      "severity": "HIGH",
+      "status": "NOT_APPLICABLE",
+      "confidence_score": 25,
+      "reasoning": "No evidence of firewall configuration and network segmentation documentation.",
+      "evidence": null,
+      "gap": "Firewall configuration and network segmentation for cardholder data environment must be documented.",
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_3",
+      "chunk_text_preview": "About auditiq AI-Powered Compliance Audit Validator | TCS & AMD AI Hackathon 2026 | Track 1 - Agents | Built by @hardikjp7 | github.com/hardikjp7 Page"
+    },
+    {
+      "rule_id": "SOX-002",
+      "framework": "SOX",
+      "severity": "HIGH",
+      "status": "NOT_APPLICABLE",
+      "confidence_score": 25,
+      "reasoning": "No reference to independent auditor review of internal controls.",
+      "evidence": null,
+      "gap": "Reference to independent auditor review of internal controls is required.",
+      "recommendation": null,
+      "chunk_id": "auditiq_upload.pdf_chunk_3",
+      "chunk_text_preview": "About auditiq AI-Powered Compliance Audit Validator | TCS & AMD AI Hackathon 2026 | Track 1 - Agents | Built by @hardikjp7 | github.com/hardikjp7 Page"
+    }
+  ]
+}

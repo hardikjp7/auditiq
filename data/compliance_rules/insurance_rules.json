@@ -1,0 +1,63 @@
+{
+  "framework": "Insurance_Compliance",
+  "version": "General Financial Services",
+  "rules": [
+    {
+      "id": "INS-001",
+      "category": "Policy Disclosure",
+      "title": "Clear policy terms disclosure",
+      "description": "All policy terms, exclusions, and conditions must be clearly disclosed to policyholders.",
+      "keywords": [
+        "disclosure",
+        "policy terms",
+        "exclusions",
+        "conditions"
+      ],
+      "severity": "HIGH",
+      "required_clause": "All exclusions and conditions must be explicitly listed."
+    },
+    {
+      "id": "INS-002",
+      "category": "Claims",
+      "title": "Claims processing timeline",
+      "description": "Claims must be acknowledged within 10 business days and resolved within 30 days.",
+      "keywords": [
+        "claims",
+        "processing",
+        "timeline",
+        "acknowledgment",
+        "settlement"
+      ],
+      "severity": "MEDIUM",
+      "required_clause": "Claims processing timelines must be specified."
+    },
+    {
+      "id": "INS-003",
+      "category": "Anti-Money Laundering",
+      "title": "AML/KYC compliance",
+      "description": "Customer identity verification and AML checks must be performed.",
+      "keywords": [
+        "AML",
+        "KYC",
+        "identity verification",
+        "money laundering"
+      ],
+      "severity": "CRITICAL",
+      "required_clause": "AML and KYC procedures must be documented."
+    },
+    {
+      "id": "INS-004",
+      "category": "Solvency",
+      "title": "Capital adequacy requirements",
+      "description": "Minimum capital reserves must be maintained as per regulatory requirements.",
+      "keywords": [
+        "capital",
+        "solvency",
+        "reserves",
+        "adequacy"
+      ],
+      "severity": "CRITICAL",
+      "required_clause": "Capital adequacy and solvency margin must be stated."
+    }
+  ]
+}

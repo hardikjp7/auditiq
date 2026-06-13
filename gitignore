@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Environment variables
+.env
+.env.*
+
+# Model cache — too large for git
+*.bin
+*.safetensors
+*.gguf
+models/
+model_cache/
+~/.cache/huggingface/
+
+# FAISS index — rebuild with build_index.py
+data/vector_store/rules.index
+data/vector_store/rule_texts.pkl
+
+# Generated reports — not needed in repo
+outputs/audit_reports/*.pdf
+outputs/audit_reports/*.html
+outputs/audit_reports/*.json
+
+# Plotly bundle — too large, download separately
+src/plotly.min.js
+
+# Logs
+logs/*.json
+!logs/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Temp
+/tmp/
+*.tmp

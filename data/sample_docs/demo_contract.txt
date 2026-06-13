@@ -1,0 +1,47 @@
+FINANCIAL SERVICES DATA PROCESSING AGREEMENT
+Company: FinServ Solutions Ltd.
+Date: June 2026
+
+1. DATA COLLECTION AND LAWFUL BASIS
+The Company collects personal data including name, address, financial history,
+and transaction records. Data is processed under legitimate interests for fraud
+prevention and service delivery as per Article 6 of GDPR.
+
+2. DATA RETENTION POLICY
+Customer personal data is retained indefinitely for internal analytics and
+marketing purposes. No deletion schedule has been established. Data is shared
+with third-party advertising partners without explicit customer consent.
+
+3. BREACH NOTIFICATION
+In the event of a data breach, the Company will notify affected customers
+within 30 days. No procedure exists for notifying the supervisory authority.
+
+4. INTERNAL FINANCIAL CONTROLS
+The Company does not maintain documented internal controls over financial
+reporting. No independent auditor review has been conducted for the current
+fiscal year.
+
+5. RECORD RETENTION
+Financial records are retained for 3 years then destroyed. Audit workpapers
+are not separately retained.
+
+6. CUSTOMER IDENTITY VERIFICATION
+Basic email verification is used for account creation. No formal KYC or
+AML screening process is in place for high-value transactions.
+
+7. CAPITAL REQUIREMENTS
+The Company maintains cash reserves at management discretion. No formal
+capital adequacy assessment has been performed against regulatory minimums.
+
+8. CLAIMS PROCESSING
+Insurance claims are reviewed within 45 business days. No formal
+acknowledgment process is defined for incoming claims.
+
+9. WHISTLEBLOWER POLICY
+Employees are encouraged to report concerns to their direct manager.
+No formal whistleblower protection policy or anonymous reporting
+channel exists.
+
+10. THIRD PARTY DATA PROCESSORS
+Customer data is shared with 12 external vendors. Data processing
+agreements have not been established with all vendors.

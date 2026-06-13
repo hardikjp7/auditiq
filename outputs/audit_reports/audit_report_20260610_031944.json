@@ -1,0 +1,70 @@
+{
+  "report_meta": {
+    "document": "uploaded_doc.txt",
+    "generated": "2026-06-10T03:19:44.023721",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "embeddings": "BAAI/bge-small-en-v1.5"
+  },
+  "score_summary": {
+    "overall_score": 90.0,
+    "risk_level": "LOW",
+    "framework_scores": {
+      "GDPR": 90.0
+    },
+    "status_counts": {
+      "COMPLIANT": 2,
+      "PARTIAL": 1
+    },
+    "total_rules": 3,
+    "issues": [
+      {
+        "rule_id": "GDPR-005",
+        "framework": "GDPR",
+        "severity": "MEDIUM",
+        "status": "PARTIAL",
+        "gap": "The document does not explicitly mention that data processing agreements with all third parties must include GDPR-compliant clauses.",
+        "recommendation": "Ensure that all data processing agreements with third parties include GDPR-compliant clauses."
+      }
+    ],
+    "critical_issues": [],
+    "high_issues": []
+  },
+  "validations": [
+    {
+      "rule_id": "GDPR-001",
+      "framework": "GDPR",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 100,
+      "evidence": "The Company processes personal data under the lawful basis of legitimate interests and contractual necessity as defined under Article 6 of GDPR.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "uploaded_doc.txt_chunk_0",
+      "chunk_text_preview": "DATA PROCESSING AGREEMENT 1. LAWFUL BASIS FOR PROCESSING The Company processes personal data under the lawful basis of legitimate interests and contra"
+    },
+    {
+      "rule_id": "GDPR-002",
+      "framework": "GDPR",
+      "severity": "HIGH",
+      "status": "COMPLIANT",
+      "confidence_score": 100,
+      "evidence": "Customer data will be retained for a period of 3 years from the date of last transaction, after which it will be securely deleted in accordance with our deletion policy.",
+      "gap": null,
+      "recommendation": null,
+      "chunk_id": "uploaded_doc.txt_chunk_0",
+      "chunk_text_preview": "DATA PROCESSING AGREEMENT 1. LAWFUL BASIS FOR PROCESSING The Company processes personal data under the lawful basis of legitimate interests and contra"
+    },
+    {
+      "rule_id": "GDPR-005",
+      "framework": "GDPR",
+      "severity": "MEDIUM",
+      "status": "PARTIAL",
+      "confidence_score": 80,
+      "evidence": "Data processing agreements with all third parties must be referenced.",
+      "gap": "The document does not explicitly mention that data processing agreements with all third parties must include GDPR-compliant clauses.",
+      "recommendation": "Ensure that all data processing agreements with third parties include GDPR-compliant clauses.",
+      "chunk_id": "uploaded_doc.txt_chunk_0",
+      "chunk_text_preview": "DATA PROCESSING AGREEMENT 1. LAWFUL BASIS FOR PROCESSING The Company processes personal data under the lawful basis of legitimate interests and contra"
+    }
+  ]
+}

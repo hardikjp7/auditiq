@@ -1,0 +1,51 @@
+{
+  "framework": "HIPAA",
+  "version": "Health Insurance Portability and Accountability Act 1996",
+  "rules": [
+    {
+      "id": "HIPAA-001",
+      "category": "Protected Health Information",
+      "title": "PHI access controls",
+      "description": "Access to Protected Health Information must be restricted to authorized personnel only with role-based access controls.",
+      "keywords": ["PHI", "protected health information", "access control", "role-based", "authorization"],
+      "severity": "CRITICAL",
+      "required_clause": "Role-based access controls for PHI must be documented and enforced."
+    },
+    {
+      "id": "HIPAA-002",
+      "category": "Data Transmission",
+      "title": "Encryption of PHI in transit",
+      "description": "All Protected Health Information transmitted electronically must be encrypted using industry-standard protocols.",
+      "keywords": ["encryption", "transit", "electronic", "transmission", "TLS", "SSL"],
+      "severity": "CRITICAL",
+      "required_clause": "Encryption standards for PHI transmission must be specified."
+    },
+    {
+      "id": "HIPAA-003",
+      "category": "Breach Notification",
+      "title": "HIPAA breach notification rule",
+      "description": "Covered entities must notify affected individuals within 60 days of discovering a PHI breach.",
+      "keywords": ["breach", "notification", "60 days", "covered entity", "PHI breach"],
+      "severity": "CRITICAL",
+      "required_clause": "A 60-day breach notification procedure for PHI must be documented."
+    },
+    {
+      "id": "HIPAA-004",
+      "category": "Audit Controls",
+      "title": "Audit logs for PHI access",
+      "description": "Systems handling PHI must implement hardware, software, and procedural mechanisms to record and examine access.",
+      "keywords": ["audit log", "access log", "monitoring", "PHI access", "audit trail"],
+      "severity": "HIGH",
+      "required_clause": "Audit logging mechanisms for all PHI access must be in place."
+    },
+    {
+      "id": "HIPAA-005",
+      "category": "Business Associates",
+      "title": "Business Associate Agreements",
+      "description": "Covered entities must have signed Business Associate Agreements with all vendors who handle PHI.",
+      "keywords": ["business associate", "BAA", "vendor", "third party", "PHI handling"],
+      "severity": "HIGH",
+      "required_clause": "Business Associate Agreements must be in place with all PHI-handling vendors."
+    }
+  ]
+}
