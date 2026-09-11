@@ -12,6 +12,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-Production-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![Qwen](https://img.shields.io/badge/LLM-Qwen2.5--7B--Instruct-purple?style=flat-square)](https://huggingface.co/Qwen)
 [![FAISS](https://img.shields.io/badge/Vector_DB-FAISS-blue?style=flat-square)](https://faiss.ai)
+[![Hackathon Result](https://img.shields.io/badge/AMD_%26_TCS_AI_Hackathon-Top_10_Finalist-FFD700?style=flat-square)](https://github.com/hardikjp7/auditiq)
 [![License](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](LICENSE)
 
 <br>
@@ -46,6 +47,7 @@ This project was built entirely during the **TCS & AMD AI Hackathon 2026**, an i
 | **Platform** | AMD Jupyter Cloud · `notebooks.amd.com/tcs-hackathon` |
 | **GPU Credits** | $100 AMD Developer Cloud credits via AMD AI Developer Program |
 | **Build Period** | June 8 – 17, 2026 |
+| **Result** | Top 10 Finalist (National) · Grand Finale, TCS Synergy Park, Hyderabad |
 | **Participant** | Solo - Hardik Parmar · [@hardikjp7](https://github.com/hardikjp7) |
 
 > **No NVIDIA hardware was used at any point.** All development, inference, and testing ran exclusively on AMD Instinct MI300X via AMD ROCm 7.2.
